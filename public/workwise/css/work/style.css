@@ -1,0 +1,71 @@
+:root {
+    --color-secret: #8e959f;
+    --accent: hsl(214, 89%, 52%);
+    --color-orange: #e44d3a;
+}
+
+.post-bar {
+    padding: 20px !important;
+}
+
+.wrp-logo {
+    padding: 10px;
+    position: relative;
+    float: right;
+    /* max-width: 200px !important;
+    max-height: 200px !important; */
+}
+
+.logo-company {
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: cover;
+    float: unset;
+    border-radius: 50%;
+    border: 3px solid  var(--color-orange) !important;
+}
+
+.wrp-info-work {
+    width: 100%;
+    margin-left: 3%;
+}
+
+.name-work {
+    font-size: 25px;
+    color: #4C5BD4;
+}
+
+.name-company {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 2%;
+    color: black;
+}
+
+.wrp_job_info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10%;
+    margin-top: 3%;
+}
+
+.job_info {
+    color: #6F6F6F;
+    cursor: context-menu;
+}
+
+.job_info i,
+.job_chat i {
+    color: var(--accent);
+    margin-right: 3px;
+}
+
+.job_money {
+    width: max-content;
+    margin-top: 3%;
+}
+
+.job_chat a{
+    color: #6F6F6F;
+}

@@ -1,0 +1,132 @@
+#wrapper-info-ps #ps-info-avatar img {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.info-user-login {
+    padding: 15px 5px !important;
+}
+
+.info-user-login a {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: black;
+}
+
+.info-user-login a:hover {
+    background-color: #edeff0;
+}
+
+.name-user-login {
+    font-size: 17px;
+    font-weight: 600;
+    margin-left: 3%;
+}
+
+#wrapper-default {
+    width: 100% !important;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 99;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.wrp-confirm-change {
+    width: 100% !important;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text-notificate {
+    color: white !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    display: flex;
+    align-items: center;
+}
+
+.text-notificate i {
+    color: white !important;
+    font-size: 25px !important;
+    margin-right: 5px !important;
+}
+
+.btn-agree,
+.btn-agree-avatar {
+    background: #e44d3a !important;
+    border-color: #e44d3a !important;
+}
+
+.btn-agree:hover,
+.btn-agree-avatar:hover {
+    color: #fff;
+    background-color: #e44d3ae0 !important;
+    border-color: #e44d3ae0 !important;
+}
+
+.btn-cancel,
+.btn-agree {
+    padding: 0.35rem 2rem !important;
+    font-weight: bold;
+}
+
+.btn-agree-avatar,
+.btn-cancel-avatar {
+    padding: 0.1rem 1.5rem !important;
+    font-weight: bold;
+}
+
+#cover-image {
+    max-height: 400px !important;
+    object-fit: cover !important;
+}
+
+.wrp-btn-avatar {
+    display: none;
+}
+
+.user-pro-img img {
+    width: 170px !important;
+    height: 170px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+}
+
+.avatar-user-post {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.wrp-get-content #content {
+    color: #666;
+    font-size: 15px;
+    line-height: 24px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.background-post {
+    min-height: 400px;
+    margin: 20px 0;
+    background-position: center center;
+    background-size: cover;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.message-btn {
+    margin: 0 !important;
+    float: unset !important;
+}

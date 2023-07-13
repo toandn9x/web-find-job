@@ -1,0 +1,23 @@
+.acc-setting {
+    border-radius: 10px;
+    box-shadow: 4px 1px 20px rgba(67, 56, 56, 0.1)
+}
+
+.acc-setting > h3 {
+    font-size: 15px;
+}
+
+.table .thead-dark th {
+    background-color: #e44d3a !important;
+    font-weight: bold;
+    border-color: #e44d3a !important;;
+}
+
+.table tbody {
+    background-color: white !important;
+}
+
+.table td, .table th {
+    border: 1px solid #dee2e6 !important;
+    vertical-align: middle;
+}

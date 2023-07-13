@@ -1,0 +1,234 @@
+:root {
+    --accent: hsl(214, 89%, 52%);
+    --primary-deemphasized-button-background: #E7F3FF;
+    --hover-overlay: #d1dae4;
+    --color-secret: #8e959f;
+    --fds-black-alpha-05: rgba(0, 0, 0, 0.05);
+}
+
+.error-register {
+    display: inline-block;
+    margin-top: 5px;
+    font-style: italic;
+    font-size: 13px;
+    color: red;
+}
+
+.contact-info,
+.contact-info-base,
+.contact-info-company {
+    display: flex;
+    align-items: start;
+    position: relative;
+}
+
+.contact-info img,
+.contact-info-base img,
+.contact-info-company img {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.privacy p {
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 1px !important;
+    margin-left: 2%;
+}
+
+.text-contact-info {
+    font-size: 16px;
+    color: black;
+}
+
+.wrp-add-link,
+.wrp-add-hobby {
+    display: flex;
+    align-items: center;
+    color: var(--accent) !important;
+    cursor: pointer;
+    /* display: none; */
+}
+
+.icon-add-link,
+.icon-add-ipt-link {
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    float: unset !important;
+    font-weight: unset;
+    color: var(--accent) !important;
+}
+
+#add-link,
+#add-hobby {
+    font-weight: 600;
+    margin-left: 1%;
+}
+
+.wrp-add-link:hover #add-link,
+.wrp-add-hobby #add-hobby {
+    text-decoration: underline;
+}
+
+.wrp-ipt-add-link {
+    display: none;
+}
+
+.ipt-add-link {
+    padding: 1.5rem 0.75rem !important;
+}
+
+.icon-add-ipt-link {
+    border: unset;
+    border-radius:  unset;
+    margin-right: 3%;
+}
+
+.btn-add-ipt-link {
+    max-width: 180px;
+    border: 1px solid var(--primary-deemphasized-button-background);
+    background-color: var(--primary-deemphasized-button-background);
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 3%;
+    cursor: pointer;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.btn-add-ipt-link:hover {
+    background-color: var(--hover-overlay);
+}
+
+.wrp-btn-add-link,
+.wrp-btn-update-address {
+    border-top: 1px solid #e5e5e5;
+    padding-top: 2%;
+    margin-top: 3%;
+    text-align: right;
+}
+
+.icon-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    float: unset !important;
+    font-size: 25px !important;
+    cursor: pointer;
+    color: var(--accent) !important;
+}
+
+.icon-edit:hover {
+    color: #e44d3a !important;
+}
+
+.ipt-update-address,
+.ipt-update-gender,
+.ipt-update-date {
+    width: 100%;
+    display: none;
+}
+
+.wrp-select-date {
+    gap: 5px !important;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+#months,
+#dates {
+    visibility: hidden;
+}
+
+.icon-nick-name,
+.icon-role {
+    font-size: 24px !important;
+    color: var(--color-secret) !important;
+    font-weight: unset !important;
+}
+
+.error-phone,
+.error-phone-company {
+    padding: 0 0.375rem;
+    font-size: 14px;
+    color: red;
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.img-logo-company {
+    position: relative;
+    display: flex;
+    width: 200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    margin: 5% auto;
+    cursor: pointer;
+}
+
+.img-logo-company::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.img-logo-company:hover::after {
+    background-color: var(--fds-black-alpha-05);
+}
+
+.img-logo-company img {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50%;
+    border: 4px solid black;
+    object-fit: cover;
+}
+
+.img-logo-company i {
+    position: absolute;
+    bottom: 0;
+    right: 15%;
+    width: 35px;
+    height: 35px;
+    background: #e4e6eb;
+    color: black;
+    border-radius: 50%;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    z-index: 3;
+}
+
+.wrp-btn-update-logo {
+    display: none;
+}
+
+.content-introduce * {
+    all: revert; /* revert: hoàn nguyên tất cả thuộc tính của thẻ */
+}
+
+.title-intro {
+    position: relative;
+}
+
+.btn-edit-introduce {
+    top: unset;
+    bottom: 0;
+}
+
+.wrp-edit-intro {
+    display: none;
+}

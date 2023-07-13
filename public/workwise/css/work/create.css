@@ -1,0 +1,99 @@
+.acc-setting {
+    border-radius: 10px;
+    box-shadow: 4px 1px 20px rgba(67, 56, 56, 0.1)
+}
+
+.active-suggest {
+    position: sticky !important;
+    top: 20px !important;
+}
+
+.title_dm {
+    margin: 2% 0 3% 0;
+    border-left: 4px solid #4C5BD4;
+    color: #4C5BD4;
+    padding-left: 10px;
+    line-height: 16px;
+    font-size: 16px;
+    font-weight: 700 !important;
+}
+
+.select2-container--default .select2-selection--single {
+    height: 100%;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    height: 35px !important;
+    display: flex;
+    align-items: center;
+}
+
+.wrp_new_money_min,
+.wrp_new_money_max,
+.wrp_new_money_kg {
+    display: none;
+}
+
+.form_item {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background: #E9EEFC;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.left_form_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.left_form_item p {
+    color: #4C5BD4;
+    font-weight: 600;
+}
+
+.right_form_item {
+    border-left: 1px dashed #A7A7A7;
+}
+
+.bg_img_suggest {
+    width: 20px;
+    height: 20px;
+    background-image: url('/workwise/images/icons/item_goiy1.svg');
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bg_img_dropdown {
+    width: 30px;
+    height: 26px;
+    background-image: url('/workwise/images/icons/item_goiy3.svg');
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.text_suggest {
+    padding: 0 10px;
+    margin: 2% 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.form-group .active {
+    height: auto !important;
+}
+
+.form_error {
+    font-size: 14px;
+    font-style: italic;
+    text-align: right;
+    display: block;
+    margin-top: 10px;
+    color: red;
+}
