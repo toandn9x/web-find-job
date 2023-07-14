@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Str;
+use Auth;
 
 class Job extends Model
 {
@@ -156,12 +157,25 @@ class Job extends Model
         return self::$money_text[$this->money_kg];
     }
 
+    public function getTitleLimitAttribute() {
+        return Str::limit($this->title, 100);
+    }
+
+    //Hàm kiểm tra xem người dùng đã like tin chưa
+    public function checkLike() {
+        $check = $this->likes()->where('user_id', Auth::user()->id)->first();
+        if($check) {
+            return true;
+        }
+        return false;
+    }
+
     // Relationship
     public function company() {
         return $this->beLongsTo(Company::class);
     }
 
-    public function getTitleLimitAttribute() {
-        return Str::limit($this->title, 100);
+    public function likes() {
+        return $this->beLongsToMany(User::class, 'job_like');
     }
 }

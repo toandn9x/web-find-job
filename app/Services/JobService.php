@@ -132,4 +132,27 @@ class JobService
             ]);
         }
     }
+
+    public function like(Request $request) {
+        try {
+            $data = $request->except('_token');
+            $user_id = Auth::user()->id;
+            $job = Job::find($data['_id']);
+            if($job->checkLike()) {
+                $job->likes()->detach($user_id);
+            }else{
+                $job->likes()->attach($user_id);
+            }
+            
+            return $job;
+        } catch (\Exception $e) {
+            Log::error('Error like job', [
+                "method" => __METHOD__,                
+                "line" => __LINE__,                    
+                "message" => $e->getMessage(),
+                "data" => $request->all(),    
+            ]);
+            return false;
+        }
+    }
 }

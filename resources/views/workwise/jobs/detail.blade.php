@@ -15,7 +15,7 @@
                         <div class="tab-pane active show" id="nav-notification" role="tabpanel"
                             aria-labelledby="nav-notification-tab">
                             <div class="acc-setting">
-                                <h3>Trang chủ &nbsp; &rarr; &nbsp; Việc Làm {{ $job->category }} &nbsp; &rarr; &nbsp; {{ $job->category }}</h3>
+                                <h3>Trang chủ &nbsp; &rarr; &nbsp; Việc Làm {{ $job->category }} &nbsp; &rarr; &nbsp; {{ $job->title }}</h3>
                                 <div class="notifications-list">
                                     <div class="notfication-details">
                                         <div class="wrp_info_job_company">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Traits\ResponseTrait;
 use App\Services\JobService;
 use Log;
 use Auth;
@@ -11,6 +12,8 @@ use App\Models\Company;
 
 class JobController extends Controller
 {
+    use ResponseTrait;
+
     private $job;
     
     public function __construct(JobService $jobService) {
@@ -114,5 +117,13 @@ class JobController extends Controller
         $this->job->destroy($id);
 
         return back()->with('success', 'Xóa tin thành công.');
+    }
+
+    public function like(Request $request) {
+        $job = $this->job->like($request);
+        $data = [
+            'count' => count($job->likes),
+        ];
+        return $job ? $this->responseSuccess($data) : $this->responseError();
     }
 }

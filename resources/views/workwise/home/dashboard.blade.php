@@ -146,25 +146,27 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="ed-opts">
-                                                    <a href="" title class="ed-opts-open"><i
-                                                            class="la la-ellipsis-v"></i></a>
-                                                    <ul class="ed-options">
-                                                        <li>
-                                                            <a href="#" class="edit-post setting-post" data-post="{{ $posts[0]->id }}" title>
-                                                                <i class="la la-pencil icon-setting-post mr-1"></i> Chỉnh sửa bài viết
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ route('post.destroy') }}" class="delete-post setting-post" data-post="{{ $posts[0]->id }}">
-                                                               <i class="la la-trash-o icon-setting-post mr-1"></i> Chuyển vào thùng rác
-                                                            </a>
-                                                        </li>
-                                                        <li><a href="#" title>Chỉnh sửa đối tượng</a></li>
-                                                        <li><a href="#" title>Close</a></li>
-                                                        <li><a href="#" title>Hide</a></li>
-                                                    </ul>
-                                                </div>
+                                                @can('setting', $posts[0])
+                                                    <div class="ed-opts">
+                                                        <a href="" title class="ed-opts-open"><i
+                                                                class="la la-ellipsis-v"></i></a>
+                                                        <ul class="ed-options">
+                                                            <li>
+                                                                <a href="#" class="edit-post setting-post" data-post="{{ $posts[0]->id }}" title>
+                                                                    <i class="la la-pencil icon-setting-post mr-1"></i> Chỉnh sửa bài viết
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="{{ route('post.destroy') }}" class="delete-post setting-post" data-post="{{ $posts[0]->id }}">
+                                                                <i class="la la-trash-o icon-setting-post mr-1"></i> Chuyển vào thùng rác
+                                                                </a>
+                                                            </li>
+                                                            <li><a href="#" title>Chỉnh sửa đối tượng</a></li>
+                                                            <li><a href="#" title>Close</a></li>
+                                                            <li><a href="#" title>Hide</a></li>
+                                                        </ul>
+                                                    </div>
+                                                @endcan
                                             </div>
                                             <div class="job_descp">
                                                 <div class="wrp-get-content">

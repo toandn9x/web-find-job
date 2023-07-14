@@ -39,7 +39,8 @@ Route::group([
     });
 });
 
-Route::get('/job', "Client\JobController@index")->name('job.index');
+//Giao diện chính
+Route::get('/', "Client\JobController@index")->name('home');
 Route::get('/job/detail/{id}', "Client\JobController@show")->name('job.detail');
 
 Route::group([
@@ -53,8 +54,8 @@ Route::group([
     Route::group([
         'namespace' => "Client"
     ], function() {
-        //Giao diện chính
-        Route::get('/','DashboardController@index')->name('home');
+        //Giao diện mạng xã hội
+        Route::get('/socail','DashboardController@index')->name('home.socail');
 
         // Phần bài viết của người dùng
         Route::prefix('post')->group(function () {
@@ -94,6 +95,7 @@ Route::group([
                 Route::post('/destroy/{id}', "JobController@destroy")->name('job.destroy');
             });
         });
+        Route::post('job/like', "JobController@like");
     });
 
     //Đăng xuất tài khoản

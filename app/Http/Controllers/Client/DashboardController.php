@@ -23,10 +23,6 @@ class DashboardController extends Controller
     {
         $posts = $this->post->index();
        
-        // Log::info($posts[0]);
-        // die();
-        // return response()->json($posts, 200);
-
         return view('workwise.home.dashboard', [
             'posts' => $posts,
         ]);

@@ -28,12 +28,12 @@
                                             <div class="post_topbar p-0 mb-4">
                                                 <div>
                                                     <div class="wrp-logo">
-                                                        <img src="{{ $job->company->image_url }}"
-                                                            alt class="logo-company">
+                                                        <img src="{{ $job->company->image_url }}" alt class="logo-company">
                                                     </div>
                                                     <div class="wrp-info-work">
                                                         <span>
-                                                            <a href="{{ route('job.detail', $job->id) }}" class="name-work">{{ $job->title_limit }}</a>
+                                                            <a href="{{ route('job.detail', $job->id) }}"
+                                                                class="name-work">{{ $job->title_limit }}</a>
                                                         </span>
                                                         <span>
                                                             <a href="" class="name-company d-block">
@@ -43,12 +43,14 @@
                                                         <div class="wrp_job_info">
                                                             <div class="job_local job_info" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" title="Địa chỉ"><i
-                                                                    class="fa fa-map-marker" aria-hidden="true"></i> {{ $job->company->address }}
+                                                                    class="fa fa-map-marker" aria-hidden="true"></i>
+                                                                {{ $job->company->address }}
                                                             </div>
                                                             <div class="job_time job_info" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" title="Ngày đăng"><i
                                                                     class="fa fa-calendar-check-o"
-                                                                    aria-hidden="true"></i>{{ date('d-m-Y', strtotime($job->created_at)) }}</div>
+                                                                    aria-hidden="true"></i>{{ date('d-m-Y', strtotime($job->created_at)) }}
+                                                            </div>
                                                             <div class="job_chat">
                                                                 <a href="">
                                                                     <i class="fa fa-weixin" aria-hidden="true"></i> Chat
@@ -56,30 +58,46 @@
                                                             </div>
                                                         </div>
                                                         <div class="job_money job_info" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" title="Lương"><i
-                                                                    class="fa fa-money" aria-hidden="true"></i>
-                                                                @if ($job->money_type == 1)
-                                                                    Thỏa thuận
-                                                                @elseif($job->money_type == 2)
-                                                                    {{ number_format($job->money_min) }} VNĐ
-                                                                @elseif($job->money_type == 3)
-                                                                    {{ number_format($job->money_min, 0, '', '.') }} - {{ number_format($job->money_max, 0, '', '.') }} VNĐ
-                                                                @endif
+                                                            data-bs-placement="top" title="Lương"><i class="fa fa-money"
+                                                                aria-hidden="true"></i>
+                                                            @if ($job->money_type == 1)
+                                                                Thỏa thuận
+                                                            @elseif($job->money_type == 2)
+                                                                {{ number_format($job->money_min) }} VNĐ
+                                                            @elseif($job->money_type == 3)
+                                                                {{ number_format($job->money_min, 0, '', '.') }} -
+                                                                {{ number_format($job->money_max, 0, '', '.') }} VNĐ
+                                                            @else
+                                                                {{ $job->money_text }} VNĐ
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="job-status-bar">
                                                 <ul class="like-com">
-                                                    <li>
-                                                        <a href="#" class="active"><i class="fas fa-heart"></i>
-                                                            Like</a>
-                                                        <span class="m-0">25</span>
-                                                    </li>
-                                                    <li><a href="#" class="com"><i class="fas fa-comment-alt"></i>
-                                                            Comments 15</a></li>
+                                                    @if (Auth::check())
+                                                        <li><a href="#"
+                                                                class="com like {{ $job->checkLike() ? 'active_like' : '' }}"
+                                                                data-id="{{ $job->id }}"><i class="fas fa-heart"></i>
+                                                                Yêu thích <span
+                                                                    class="count_like">{{ count($job->likes) }}</span></a>
+                                                        </li>
+                                                    @else
+                                                        <li><a href="#" class="com not_auth_like"><i
+                                                                    class="fas fa-heart"></i>
+                                                                Yêu thích <span
+                                                                    class="count_like">{{ count($job->likes) }}</span></a>
+                                                        </li>
+                                                    @endif
+
+                                                    <li><a href="#" class="com" data-toggle="modal"
+                                                            data-target="#exampleModalCenter"><i
+                                                                class="fas fa-comment-alt"></i>
+                                                            Bình luận 15</a></li>
                                                 </ul>
-                                                <a href="#"><i class="fas fa-eye"></i>Views 50</a>
+                                                <a href="#"><i class="fas fa-eye"></i>Lượt xem
+                                                    {{ $job->views }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -198,4 +216,139 @@
             </div>
         </div>
     </main>
+
+    {{-- Modal bình luận --}}
+    <div class="modal show d-block" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="header">
+                    <h1 class="header_title">Bình luận</h1>
+                </div>
+                <div class="middle">
+                    <div class="mt-3 kk">
+                        <div class="wrp_comment">
+                            <div class="wrp_avatar">
+                                <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg"
+                                    alt="" width="50" height="50">
+                            </div>
+                            <div class="wrp_content_comment">
+                                <p class="content_comment">
+                                    <span class="name d-block mb-2">Tran Dinh Nghia</span>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
+                                    similique
+                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
+                                    itaque totam dolorum soluta facere voluptatem.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
+                                    similique
+                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
+                                    itaque totam dolorum soluta facere voluptatem.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
+                                    similique
+                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
+                                    itaque totam dolorum soluta facere voluptatem.
+                                </p>
+
+                                <div class="interact mt-3 ml-2">
+                                    <span class="btn_feedback btn_interact">Phản hồi</span>&nbsp; | &nbsp;<span class="btn_interact">Xóa</span>&nbsp; | &nbsp;<span class="time_comment">2 giò</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrp_comment comment_feedback mt-3">
+                            <div class="wrp_avatar">
+                                <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg"
+                                    alt="" width="50" height="50">
+                            </div>
+                            <div class="wrp_content_comment">
+                                <p class="content_comment">
+                                    <span class="name d-block mb-2">Tran Dinh Nghia</span>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
+                                    similique
+                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
+                                    itaque totam dolorum soluta facere voluptatem.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
+                                    similique
+                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
+                                    itaque totam dolorum soluta facere voluptatem.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
+                                    similique
+                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
+                                    itaque totam dolorum soluta facere voluptatem.
+                                </p>
+                                <div class="interact mt-3 ml-2">
+                                    <span class="btn_interact">Xóa</span>&nbsp; | &nbsp;<span class="time_comment">2 giò</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrp_comment comment_feedback mt-3">
+                            <div class="wrp_avatar">
+                                <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg"
+                                    alt="" width="50" height="50">
+                            </div>
+                            <div class="wrp_content_comment">
+                                <p class="content_comment">
+                                    <span class="name d-block mb-2">Tran Dinh Nghia</span>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
+                                    similique
+                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
+                                    itaque totam dolorum soluta facere voluptatem.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
+                                    similique
+                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
+                                    itaque totam dolorum soluta facere voluptatem.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
+                                    similique
+                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
+                                    itaque totam dolorum soluta facere voluptatem.
+                                </p>
+                                <div class="interact mt-3 ml-2">
+                                    <span class="btn_interact">Xóa</span>&nbsp; | &nbsp;<span class="time_comment">2 giò</span>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="mt-4">
+                            <div class="wrp_ipt_feedback" id="dcm">
+                                <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg" alt="">
+                                <div class="wrp_ipt_comment">
+                                    <textarea class="ipt_cm feedback_comment" placeholder="Viết bình luận của bạn"></textarea>
+                                    <div class="wrp_icon">
+                                        <i class="fa fa-camera-retro" aria-hidden="true"></i>
+                                        <i class="fa fa-paper-plane-o icon_send" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+                    </div>
+
+                    <div class="wrp_comment mt-5">
+                        <div class="wrp_avatar">
+                            <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg"
+                                alt="" width="50" height="50">
+                        </div>
+                        <div class="wrp_content_comment">
+                            <p class="content_comment">
+                                .
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="footer_title">
+                        <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg" alt="">
+                        <div class="wrp_ipt_comment">
+                            <textarea class="ipt_cm send_comment" placeholder="Viết bình luận của bạn"></textarea>
+                            <div class="wrp_icon">
+                                <i class="fa fa-camera-retro" aria-hidden="true"></i>
+                                <i class="fa fa-paper-plane-o icon_send" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script src="/script/works/comment.js"></script>
 @endsection
