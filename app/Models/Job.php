@@ -178,4 +178,8 @@ class Job extends Model
     public function likes() {
         return $this->beLongsToMany(User::class, 'job_like');
     }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }

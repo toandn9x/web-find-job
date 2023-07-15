@@ -46,11 +46,6 @@ Route::get('/job/detail/{id}', "Client\JobController@show")->name('job.detail');
 Route::group([
     'middleware' => ['auth','PreventBackHistory'],
 ],function () {
-    Route::get('/messenger', 'ChatController@index');
-    Route::post('/show-friend', 'ChatController@showFriend');
-    Route::post('/send-message', 'ChatController@addMessage');
-
-    
     Route::group([
         'namespace' => "Client"
     ], function() {
@@ -83,6 +78,7 @@ Route::group([
             Route::post('/update-image', "CompanyController@updateImage");
         });
 
+        //Bải tin tuyển dụng
         Route::group([
             'middleware' => ['checkRole'],
         ], function () {
@@ -95,7 +91,14 @@ Route::group([
                 Route::post('/destroy/{id}', "JobController@destroy")->name('job.destroy');
             });
         });
+        // Chức năng like bài tin
         Route::post('job/like', "JobController@like");
+
+        // Bình luận bài tin
+        Route::prefix('comment')->group(function () {
+            Route::post('/store', "CommentController@store");
+            Route::get('/show/{id}', "CommentController@show");
+        });
     });
 
     //Đăng xuất tài khoản

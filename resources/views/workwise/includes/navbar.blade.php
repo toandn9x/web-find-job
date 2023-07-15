@@ -40,6 +40,7 @@
                         height="40px" alt style="object-fit: cover">
                         <i class="la la-sort-down"></i>
                     </div>
+                    <input type="hidden" id="user_login_id" value="{{ Auth::user()->id }}">
                     <div class="user-account-settingss" id="users">
                         <h3 class="info-user-login">
                             <a href="{{ route('user.profile', Auth::user()->id) }}">

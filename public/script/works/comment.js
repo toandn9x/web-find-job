@@ -1,9 +1,13 @@
 $(document).ready(function () {
+    var _token = $('meta[name="csrf-token"]').attr('content');
+    var user_login_id = $('#user_login_id').val();
+    var avatar = $('#avatar_user_login').attr('src');
+    var name = $('#name_user_login').text();
+
     $('.like').on('click', function(event) {
         event.preventDefault();
         let btn = $(this);
         let _id = btn.data('id');
-        let _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: "POST",
             url: "/job/like",
@@ -37,37 +41,195 @@ $(document).ready(function () {
         })
     });
 
-    $('.send_comment').on('keyup', function() {
-        if($(this).val().length > 150) {
+    $('.com').on('click', function(event) {
+        event.preventDefault;
+        let _id = $(this).data('id');
+        let avatar = "";
+        $('#idJob').val(_id);
+        $('.middle').empty();
+        $.ajax({
+            type: "GET",
+            url: "/comment/show/"+_id,
+            dataType: "JSON",
+            success: function (response) {
+                $.each(response.data, function(key, val) {
+                    if(val.user.user_info.avatar.includes('https://')) {
+                        avatar = val.user.user_info.avatar;
+                    }else {
+                        avatar = "/storage/"+val.user.user_info.avatar;
+                    }
+
+                    if(val.user_id == user_login_id) {
+                        $('.middle').append(
+                            '<div class="mt-3 kk">'+
+                                '<div class="wrp_comment">'+
+                                    '<div class="wrp_avatar">'+
+                                        '<img src="'+avatar+'" width="50" height="50">'
+                                    +'</div>' +
+                                    '<div class="wrp_content_comment">'+
+                                        '<p class="content_comment">'+
+                                            '<span class="name d-block mb-2">'+val.user.name+'</span>' + 
+                                                val.content.replaceAll(" ", "&nbsp;").replace(/\r\n|\r|\n/g, "<br />")
+                                        +'</p>' +
+                                        '<div class="interact mt-3 ml-2">'+
+                                            '<span class="btn_feedback btn_interact">Phản hồi</span> \u00A0 | \u00A0 <span class="btn_interact btn_delete_comment_parent">Xóa</span> \u00A0 | \u00A0 <span class="time_comment">Vừa xong</span>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>' +
+                                '<div class="feedback"></div>' +
+                                '<div class="wrp_comment_feedback"></div>'
+                            +'</div>'
+                        )
+                    }else {
+                        $('.middle').append(
+                            '<div class="mt-3 kk">'+
+                                '<div class="wrp_comment">'+
+                                    '<div class="wrp_avatar">'+
+                                        '<img src="'+avatar+'" width="50" height="50">'
+                                    +'</div>' +
+                                    '<div class="wrp_content_comment">'+
+                                        '<p class="content_comment">'+
+                                            '<span class="name d-block mb-2">'+val.user.name+'</span>' + 
+                                                val.content.replaceAll(" ", "&nbsp;").replace(/\r\n|\r|\n/g, "<br />")
+                                        +'</p>' +
+                                        '<div class="interact mt-3 ml-2">'+
+                                            '<span class="btn_feedback btn_interact">Phản hồi</span> \u00A0 | \u00A0 <span class="time_comment">Vừa xong</span>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>' +
+                                '<div class="feedback"></div>' +
+                                '<div class="wrp_comment_feedback"></div>'
+                            +'</div>'
+                        )
+                    }
+                    
+                });
+            }
+        });
+    })
+
+    $('.send_comment').on('keypress', function(event) {
+        let content = $(this).val();
+
+        if(content.length > 150) {
             $(this).css('height','100px');
         }else{
             $(this).css('height','40px');
         }
+
+        //Bình luận bài tin
+        if(event.keyCode === 13 && !event.shiftKey) {
+            event.preventDefault();
+            
+            if(content.length <= 0) {
+                alert('Vui lòng nhập nội dung bình luận');
+                return false;
+            }
+
+            $('.send_comment').val('');
+            $.ajax({
+                type: "POST",
+                url: "/comment/store",
+                data: {
+                    _token: _token,
+                    content: content,
+                    _id: $('#idJob').val(),
+                },
+                dataType: "JSON",
+                success: function (response) {
+                    $('.middle').prepend(
+                        '<div class="mt-3 kk">'+
+                            '<div class="wrp_comment">'+
+                                '<div class="wrp_avatar">'+
+                                    '<img src="'+avatar+'" width="50" height="50">'
+                                +'</div>' +
+                                '<div class="wrp_content_comment">'+
+                                    '<p class="content_comment">'+
+                                        '<span class="name d-block mb-2">'+name+'</span>' + 
+                                        content.replaceAll(" ", "&nbsp;").replace(/\r\n|\r|\n/g, "<br />")
+                                    +'</p>' +
+                                    '<div class="interact mt-3 ml-2">'+
+                                        '<span class="btn_feedback btn_interact">Phản hồi</span> \u00A0 | \u00A0 <span class="btn_interact btn_delete_comment_parent">Xóa</span> \u00A0 | \u00A0 <span class="time_comment">Vừa xong</span>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</div>' +
+                            '<div class="feedback"></div>' +
+                            '<div class="wrp_comment_feedback"></div>'
+                        +'</div>'
+                    )
+                }
+            });
+           
+        }
     });
 
-    $('.feedback_comment').on('keyup', function() {
-        if($(this).val().length > 150) {
+    //Phản hồi bình luận
+    $(document).on('keypress', '.feedback_comment', function(event) {
+
+        let content = $(this).val()
+        if(content.length > 150) {
             $(this).css('height','100px');
         }else{
             $(this).css('height','40px');
         }
+
+        // '\u00A0': Ký tự space = &nbsp;
+        if(event.keyCode === 13 && !event.shiftKey) {
+            event.preventDefault();
+            
+            if(content.length <= 0) {
+                alert('Vui lòng nhập nội dung bình luận');
+                return false;
+            }
+
+            $(this).parents('.feedback')
+                    .siblings('.wrp_comment_feedback')
+                    .prepend(
+                        '<div class="wrp_comment comment_feedback mt-3">'+
+                            '<div class="wrp_avatar">'+
+                                '<img src="'+avatar+'" alt="" width="50" height="50">' +
+                            '</div>' +
+                            '<div class="wrp_content_comment">'+
+                                '<p class="content_comment">'+
+                                    '<span class="name d-block mb-2">'+
+                                        name
+                                    +'</span>' +
+                                    content.replaceAll(" ", "&nbsp;").replace(/\r\n|\r|\n/g, "<br />")
+                                +'</p>' +
+                                '<div class="interact mt-3 ml-2">'+
+                                    '<span class="btn_interact btn_delete_comment_feedback"> Xóa </span> \u00A0 | \u00A0 <span>Vừa xong</span>'
+                                +'</div>' +
+                            '</div>' +
+                        '</div>'
+                    )
+            $(this).parents('.feedback').empty();
+        }
     });
 
-    $('.btn_feedback').on('click', function() {
+    $(document).on('click', '.btn_feedback', function() {
         let btn = $(this);
-        btn.parents('.kk').append(
+        btn.parents('.kk').children('.feedback').empty().append(
             '<div class="mt-4">'+
                 '<div class="wrp_ipt_feedback">'+
-                    '<img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg" alt="">' +
+                    '<img src="'+avatar+'" alt="">' +
                     '<div class="wrp_ipt_comment">'+
                         '<textarea class="ipt_cm feedback_comment" placeholder="Viết bình luận của bạn"></textarea>' +
                         '<div class="wrp_icon">'+
-                            '<i class="fa fa-camera-retro" aria-hidden="true"></i>' + 
                             '<i class="fa fa-paper-plane-o icon_send" aria-hidden="true"></i>'
                         +'</div>'
                     +'</div>'
                 +'</div>'
             +'</div>'
-        )
+        );
+    });
+
+    $(document).on('click', '.btn_delete_comment_parent', function() {
+
+    });
+
+    $("#exampleModalCenter").on('hide.bs.modal', function(){
+        $('.send_comment').val('');
+        $('.middle').empty();
+        $('#idJob').val('');
     });
 });

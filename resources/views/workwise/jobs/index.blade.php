@@ -92,9 +92,9 @@
                                                     @endif
 
                                                     <li><a href="#" class="com" data-toggle="modal"
-                                                            data-target="#exampleModalCenter"><i
+                                                            data-target="#exampleModalCenter" data-id="{{ $job->id }}"><i
                                                                 class="fas fa-comment-alt"></i>
-                                                            Bình luận 15</a></li>
+                                                            Bình luận {{ count($job->comments) }}</a></li>
                                                 </ul>
                                                 <a href="#"><i class="fas fa-eye"></i>Lượt xem
                                                     {{ $job->views }}</a>
@@ -218,15 +218,16 @@
     </main>
 
     {{-- Modal bình luận --}}
-    <div class="modal show d-block" id="exampleModalCenter" tabindex="-1" role="dialog"
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="header">
                     <h1 class="header_title">Bình luận</h1>
+                    <input type="hidden" value="" id="idJob" name="idJob">
                 </div>
                 <div class="middle">
-                    <div class="mt-3 kk">
+                    {{-- <div class="mt-3 kk">
                         <div class="wrp_comment">
                             <div class="wrp_avatar">
                                 <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg"
@@ -237,108 +238,43 @@
                                     <span class="name d-block mb-2">Tran Dinh Nghia</span>
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
                                     similique
-                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
-                                    itaque totam dolorum soluta facere voluptatem.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
-                                    similique
-                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
-                                    itaque totam dolorum soluta facere voluptatem.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
-                                    similique
-                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
-                                    itaque totam dolorum soluta facere voluptatem.
                                 </p>
 
                                 <div class="interact mt-3 ml-2">
-                                    <span class="btn_feedback btn_interact">Phản hồi</span>&nbsp; | &nbsp;<span class="btn_interact">Xóa</span>&nbsp; | &nbsp;<span class="time_comment">2 giò</span>
+                                    <span class="btn_feedback btn_interact">Phản hồi</span>&nbsp; | &nbsp;<span class="btn_interact btn_delete_comment_parent">Xóa</span>&nbsp; | &nbsp;<span class="time_comment">2 giò</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="wrp_comment comment_feedback mt-3">
-                            <div class="wrp_avatar">
-                                <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg"
-                                    alt="" width="50" height="50">
-                            </div>
-                            <div class="wrp_content_comment">
-                                <p class="content_comment">
-                                    <span class="name d-block mb-2">Tran Dinh Nghia</span>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
-                                    similique
-                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
-                                    itaque totam dolorum soluta facere voluptatem.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
-                                    similique
-                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
-                                    itaque totam dolorum soluta facere voluptatem.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
-                                    similique
-                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
-                                    itaque totam dolorum soluta facere voluptatem.
-                                </p>
-                                <div class="interact mt-3 ml-2">
-                                    <span class="btn_interact">Xóa</span>&nbsp; | &nbsp;<span class="time_comment">2 giò</span>
+                        <div class="feedback"></div>
+                        <div class="wrp_comment_feedback">
+                            <div class="wrp_comment comment_feedback mt-3">
+                                <div class="wrp_avatar">
+                                    <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg"
+                                        alt="" width="50" height="50">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="wrp_comment comment_feedback mt-3">
-                            <div class="wrp_avatar">
-                                <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg"
-                                    alt="" width="50" height="50">
-                            </div>
-                            <div class="wrp_content_comment">
-                                <p class="content_comment">
-                                    <span class="name d-block mb-2">Tran Dinh Nghia</span>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
-                                    similique
-                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
-                                    itaque totam dolorum soluta facere voluptatem.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
-                                    similique
-                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
-                                    itaque totam dolorum soluta facere voluptatem.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
-                                    similique
-                                    autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
-                                    itaque totam dolorum soluta facere voluptatem.
-                                </p>
-                                <div class="interact mt-3 ml-2">
-                                    <span class="btn_interact">Xóa</span>&nbsp; | &nbsp;<span class="time_comment">2 giò</span>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- <div class="mt-4">
-                            <div class="wrp_ipt_feedback" id="dcm">
-                                <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg" alt="">
-                                <div class="wrp_ipt_comment">
-                                    <textarea class="ipt_cm feedback_comment" placeholder="Viết bình luận của bạn"></textarea>
-                                    <div class="wrp_icon">
-                                        <i class="fa fa-camera-retro" aria-hidden="true"></i>
-                                        <i class="fa fa-paper-plane-o icon_send" aria-hidden="true"></i>
+                                <div class="wrp_content_comment">
+                                    <p class="content_comment">
+                                        <span class="name d-block mb-2">Tran Dinh Nghia</span>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
+                                        similique
+                                        autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
+                                        itaque totam dolorum soluta facere voluptatem.
+                                    </p>
+                                    <div class="interact mt-3 ml-2">
+                                        <span class="btn_interact btn_delete_comment_feedback">Xóa</span>&nbsp; | &nbsp;<span class="time_comment">2 giò</span>
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
-                    </div>
-
-                    <div class="wrp_comment mt-5">
-                        <div class="wrp_avatar">
-                            <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg"
-                                alt="" width="50" height="50">
                         </div>
-                        <div class="wrp_content_comment">
-                            <p class="content_comment">
-                                .
-                            </p>
-                        </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="footer">
                     <div class="footer_title">
-                        <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg" alt="">
+                        <img src="{{ Auth::user()->userInfo->CheckEmptyImage('/workwise/images/resources/user-pic.png') }}" alt="" id="avatar_user_login">
+                        <span class="d-none" id="name_user_login">{{ Auth::user()->name }}</span>
                         <div class="wrp_ipt_comment">
-                            <textarea class="ipt_cm send_comment" placeholder="Viết bình luận của bạn"></textarea>
+                            <textarea class="ipt_cm send_comment" placeholder="Viết bình luận của bạn" required></textarea>
                             <div class="wrp_icon">
-                                <i class="fa fa-camera-retro" aria-hidden="true"></i>
                                 <i class="fa fa-paper-plane-o icon_send" aria-hidden="true"></i>
                             </div>
                         </div>

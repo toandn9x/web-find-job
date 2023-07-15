@@ -142,9 +142,16 @@
     padding: 0 10px;
 }
 
+.wrp_comment_feedback {
+    margin-left: 10%;
+}
+
 .wrp_ipt_feedback {
     padding: 0;
-    margin-left: 10%;
+}
+
+.feedback {
+    width: 100%;
 }
 
 .ipt_cm {
@@ -189,8 +196,13 @@
     padding: 5px 15px;
 }
 
+.content_comment .name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
 .comment_feedback {
-    margin-left: 10%;
+    /* margin-left: 10%; */
     position: relative;
 }
 
