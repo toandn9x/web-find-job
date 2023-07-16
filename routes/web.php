@@ -108,7 +108,12 @@ Route::group([
     //Đăng xuất tài khoản
     Route::get('/logout','LoginController@logout');
 });
-
+Route::get('/404', function(){
+    return view('workwise.errors.404');
+});
+Route::get('/403', function(){
+    return view('workwise.errors.403');
+});
 Route::get('/messenger/form-login', 'LoginController@formLogin');
 Route::post('/messenger/login', 'App\Http\Controllers\LoginController@login');
 Route::post('/messenger/register', 'App\Http\Controllers\LoginController@register');
