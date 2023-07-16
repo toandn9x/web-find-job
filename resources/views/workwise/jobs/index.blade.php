@@ -227,46 +227,7 @@
                     <input type="hidden" value="" id="idJob" name="idJob">
                 </div>
                 <div class="middle">
-                    {{-- <div class="mt-3 kk">
-                        <div class="wrp_comment">
-                            <div class="wrp_avatar">
-                                <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg"
-                                    alt="" width="50" height="50">
-                            </div>
-                            <div class="wrp_content_comment">
-                                <p class="content_comment">
-                                    <span class="name d-block mb-2">Tran Dinh Nghia</span>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
-                                    similique
-                                </p>
-
-                                <div class="interact mt-3 ml-2">
-                                    <span class="btn_feedback btn_interact">Phản hồi</span>&nbsp; | &nbsp;<span class="btn_interact btn_delete_comment_parent">Xóa</span>&nbsp; | &nbsp;<span class="time_comment">2 giò</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="feedback"></div>
-                        <div class="wrp_comment_feedback">
-                            <div class="wrp_comment comment_feedback mt-3">
-                                <div class="wrp_avatar">
-                                    <img src="/storage/avatars/backgroundBrS2rtQdqgWQnLidYfpp7P3QMitNZal5LV3nlZW5.jpg"
-                                        alt="" width="50" height="50">
-                                </div>
-                                <div class="wrp_content_comment">
-                                    <p class="content_comment">
-                                        <span class="name d-block mb-2">Tran Dinh Nghia</span>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae soluta numquam at,
-                                        similique
-                                        autem alias sint repudiandae sunt quae? Incidunt commodi pariatur error necessitatibus
-                                        itaque totam dolorum soluta facere voluptatem.
-                                    </p>
-                                    <div class="interact mt-3 ml-2">
-                                        <span class="btn_interact btn_delete_comment_feedback">Xóa</span>&nbsp; | &nbsp;<span class="time_comment">2 giò</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+                    
                 </div>
                 <div class="footer">
                     <div class="footer_title">
