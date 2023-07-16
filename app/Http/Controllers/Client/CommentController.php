@@ -46,7 +46,7 @@ class CommentController extends Controller
     {
         $comment = $this->comment->store($request);
 
-        return $comment ? $this->responseSuccess() : $this->responseError();
+        return $comment ? $this->responseSuccess($comment['id']) : $this->responseError();
     }
 
     /**
@@ -91,8 +91,10 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $comment = $this->comment->destroy($request);
+
+        return $comment ? $this->responseSuccess() : $this->responseError();
     }
 }

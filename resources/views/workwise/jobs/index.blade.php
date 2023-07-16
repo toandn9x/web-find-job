@@ -270,14 +270,21 @@
                 </div>
                 <div class="footer">
                     <div class="footer_title">
-                        <img src="{{ Auth::user()->userInfo->CheckEmptyImage('/workwise/images/resources/user-pic.png') }}" alt="" id="avatar_user_login">
-                        <span class="d-none" id="name_user_login">{{ Auth::user()->name }}</span>
-                        <div class="wrp_ipt_comment">
-                            <textarea class="ipt_cm send_comment" placeholder="Viết bình luận của bạn" required></textarea>
-                            <div class="wrp_icon">
-                                <i class="fa fa-paper-plane-o icon_send" aria-hidden="true"></i>
+                        @if (Auth::check())
+                            <img src="{{ Auth::user()->userInfo->CheckEmptyImage('/workwise/images/resources/user-pic.png') }}" alt="" id="avatar_user_login">
+                            <span class="d-none" id="name_user_login">{{ Auth::user()->name }}</span>
+                            <div class="wrp_ipt_comment">
+                                <textarea class="ipt_cm send_comment" placeholder="Viết bình luận của bạn" required></textarea>
+                                <div class="wrp_icon">
+                                    <i class="fa fa-paper-plane-o icon_send" aria-hidden="true"></i>
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="d-flex justify-content-center w-100">
+                                <a href="{{ route('form-login') }}" class="btn btn-primary">Đăng nhập tài khoản để bình luận</a>
+                            </div>
+                        @endif
+                        
                     </div>
                 </div>
             </div>

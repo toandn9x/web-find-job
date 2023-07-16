@@ -43,6 +43,9 @@ Route::group([
 Route::get('/', "Client\JobController@index")->name('home');
 Route::get('/job/detail/{id}', "Client\JobController@show")->name('job.detail');
 
+//Hiển thị các comment của bài tin tuyển dụng
+Route::get('/comment/show/{id}', "Client\CommentController@show");
+
 Route::group([
     'middleware' => ['auth','PreventBackHistory'],
 ],function () {
@@ -97,7 +100,8 @@ Route::group([
         // Bình luận bài tin
         Route::prefix('comment')->group(function () {
             Route::post('/store', "CommentController@store");
-            Route::get('/show/{id}', "CommentController@show");
+            Route::post('/destroy', "CommentController@destroy");
+            
         });
     });
 
