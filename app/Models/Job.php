@@ -170,6 +170,45 @@ class Job extends Model
         return false;
     }
 
+    //Scope
+
+    public function scopeTitle($query, $request) {
+        if($request->has('keyword')) {
+            $query->where('title', 'LIKE','%'. $request->get('keyword') .'%')
+                    ->orWhere('category', 'LIKE','%'. $request->get('keyword') .'%');
+        }
+        return $query;
+    }
+
+    public function scopeCity($query, $request) {
+        if($request->has('city')) {
+            $query->where('city', 'LIKE','%'. $request->get('city') .'%')
+                    ->orWhere('address', 'LIKE','%'. $request->get('city') .'%');
+        }
+        return $query;
+    }
+
+    public function scopeRank($query, $request) {
+        if($request->get('rank') != 0) {
+            $query->where('rank', $request->get('rank'));
+        }
+        return $query;
+    }
+
+    public function scopeMethodWork($query, $request) {
+        if($request->get('method_work') != 0) {
+            $query->where('form_time_work', $request->get('method_work'));
+        }
+        return $query;
+    }
+
+    public function scopeExp($query, $request) {
+        if($request->get('exp') != 0) {
+            $query->where('experience', $request->get('exp'));
+        }
+        return $query;
+    }
+
     // Relationship
     public function company() {
         return $this->beLongsTo(Company::class);

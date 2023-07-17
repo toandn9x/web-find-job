@@ -16,11 +16,16 @@ class JobService
         $this->job = new Job();
     }
 
-    public function index() {
-        $jobs = Job::with(['company' => function($query){
-                    $query->select('id','name','phone','address','path');
-                }])
-                ->orderBy('created_at', 'DESC')->get();
+    public function index(Request $request) {
+        $jobs = Job::query()->title($request)
+                    ->city($request)
+                    ->rank($request)
+                    ->methodwork($request)
+                    ->exp($request)
+                    ->with(['company' => function($query){
+                        $query->select('id','name','phone','address','path');
+                    }])
+                    ->orderBy('created_at', 'DESC')->get();
 
         return $jobs;
     }

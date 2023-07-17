@@ -356,7 +356,11 @@ $(document).ready(function () {
                 }
             });
         }
-    })
+    });
+
+    $('.select_search').on('change', function() {
+        $('#formSubmitSearch').submit();
+    });
 
     $("#exampleModalCenter").on('hide.bs.modal', function(){
         $('.send_comment').val('');

@@ -24,9 +24,9 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = $this->job->index();
+        $jobs = $this->job->index($request);
         return view('workwise.jobs.index', [
             'jobs' => $jobs,
         ]);
