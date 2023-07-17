@@ -4,137 +4,101 @@
 @endsection
 @section('main-content')
 <div class="wrapper">
-    <div class="glitch_word_box">
-        <div class="line"></div>
-        <h1 id="word" class="glitch_word0">403 - Unauthornize</h1>
-        <h1 id="word1" class="glitch_word1">403 - Unauthornize</h1>
-        <h1 id="word2" class="glitch_word2">403 - Unauthornize</h1>
-    </div>
+    <div class="wrap">
+		<div class="wrap-hand">
+			<i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+		</div>
+		<div class="forbidden">
+			<h1>FORBIDDEN</h1>
+			<h1>403</h1>
+			<b>Xin lỗi bạn không có quyền truy cập vào trang này !!</b>
+			<a href="/">Quay lại trang chủ</a>
+		</div>
+	</div>
 </div>
 <style>
-h1 {
-				color: #e44d3a;
-				font-weight: bolder;
-				font-size: 5em;
-				margin: 0;
-				outline: none;
-				padding: 0;
-				position: relative;
+.wrapper{
+	width: 100%;
+	height: 90vh;
 }
-			
-.glitch_word_box {
-    text-align: center;
-				height: 100vh;
-                display: flex;
-                align-items: center;
-				line-height: 100vh;
-				position: relative;
-				
-				-webkit-animation: disappear 1s linear;
-				-webkit-animation-iteration-count: infinite, infinite;
-				-moz-animation: disappear 1s linear;
-				-moz-animation-iteration-count: infinite, infinite;
-				-o-animation: disappear 1s linear;
-				-o-animation-iteration-count: infinite, infinite;
+.wrap{
+	width: 800px;
+	height: 100%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
-			
-.glitch_word_box .glitch_word0 {
-				position: absolute;
-				width: 100%;
+.wrap-hand{
+	width: 350px;
+	height: 350px;
+	background-color: #e44d3a;
+	position: relative;
 }
-			
-.glitch_word_box .glitch_word1 {
-				color: red;
-				font-weight: bolder;
-				left: -2px;
-				position: absolute;
-				top: -2px;
-				width: 100%;
-				z-index: -1;	
-				
-				-webkit-animation: animate_glitch_1 .2s linear;
-				-webkit-animation-iteration-count: infinite;	
-				-moz-animation: animate_glitch_1 .2s linear;
-				-moz-animation-iteration-count: infinite;	
-				-o-animation: animate_glitch_1 .2s linear;
-				-o-animation-iteration-count: infinite;	
+.wrap-hand i{
+	display: flex;
+	justify-content: center;
+	line-height: 350px;
+	font-size: 200px;
+	color: white;
 }
-			
-.glitch_word_box .glitch_word2 {
-				color: blue;
-				font-weight: bolder;
-				left: 2px;
-				position: absolute;
-				top: 2px;
-				width: 100%;
-				z-index: -1;
-				
-				-webkit-animation: animate_glitch_2 .3s linear;
-				-webkit-animation-iteration-count: infinite;
-  		-moz-animation: animate_glitch_2 .3s linear;
-				-moz-animation-iteration-count: infinite;
-  		-o-animation: animate_glitch_2 .3s linear;
-				-o-animation-iteration-count: infinite;
+.wrap-hand:before {
+    content: "";
+    width: 350px;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-bottom: 80px solid #e44d3a;
+    border-left: 80px solid #f4f4f4;
+    border-right: 80px solid #f4f4f4;
 }
-			
-@-webkit-keyframes disappear {
-				0% {	opacity: 0;	}
-				2% { opacity: 1; }
+.wrap-hand::after {
+    content: "";
+    width: 350px;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top: 80px solid #e44d3a;
+    border-left: 80px solid #f4f4f4;
+    border-right: 80px solid #f4f4f4;
 }
-						
-@-webkit-keyframes animate_glitch_1 {
-			  	0% { top: 1px; left: 1px; }
-			 	25% { top: 3px; left: 2px;	 }
-		 		50% { top: -1px; left: -4px;	}
-			 	75% { top: 2px; left: 5px;	}
-				100% {	top: 1px; left: -2px;	}			
+.forbidden{
+	width: 400px;
+	height: 350px;
+	text-align: start;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-top: 100px;
 }
-			
-@-webkit-keyframes animate_glitch_2 {
-			  	0% { top: -1px; left: -1px;	}
- 				25% { top: -3px; left: -2px;	}
- 				50% { top: 1px; left: 4px; }
-				100% { top: -1px; left: -1px; }			
+.forbidden :nth-child(1){
+	font-size: 80px;
+	color: purple;
+	font-weight: bold;
 }
-
-@-moz-keyframes disappear {
-				0% {	opacity: 0;	}
-				2% { opacity: 1; }
+.forbidden :nth-child(2){
+	font-size: 80px;
+	color: #e44d3a;
+	font-weight: bold;
+	text-align: center;
 }
-						
-@-moz-keyframes animate_glitch_1 {
-			  	0% { top: 1px; left: 1px; }
-			 	25% { top: 3px; left: 2px;	 }
-		 		50% { top: -1px; left: -4px;	}
-			 	75% { top: 2px; left: 5px;	}
-				100% {	top: 1px; left: -2px;	}			
+.forbidden :nth-child(3){
+	font-size: 20px;
+	color: rgb(122, 14, 209);
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	margin: 20px 0;
 }
-			
-@-moz-keyframes animate_glitch_2 {
-			  	0% { top: -1px; left: -1px;	}
- 				25% { top: -3px; left: -2px;	}
- 				50% { top: 1px; left: 4px; }
-				100% { top: -1px; left: -1px; }			
-}
-
-@-o-keyframes disappear {
-				0% {	opacity: 0;	}
-				2% { opacity: 1; }
-}
-						
-@-o-keyframes animate_glitch_1 {
-			  	0% { top: 1px; left: 1px; }
-			 	25% { top: 3px; left: 2px;	 }
-		 		50% { top: -1px; left: -4px;	}
-			 	75% { top: 2px; left: 5px;	}
-				100% {	top: 1px; left: -2px;	}			
-}
-			
-@-o-keyframes animate_glitch_2 {
-			  	0% { top: -1px; left: -1px;	}
- 				25% { top: -3px; left: -2px;	}
- 				50% { top: 1px; left: 4px; }
-				100% { top: -1px; left: -1px; }			
+.forbidden :nth-child(4){
+	font-size: 20px;
+	color: rgb(242, 238, 245);
+	font-weight: bold;
+	text-align: center;
+	background-color: #e44d3a;
+	border-radius: 5px;
+	padding: 10px 15px;
+	display: block;
 }
 </style>
 @endsection
