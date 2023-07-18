@@ -114,6 +114,9 @@ Route::get('/404', function(){
 Route::get('/403', function(){
     return view('workwise.errors.403');
 });
+Route::get('/401', function(){
+    return view('workwise.errors.401');
+});
 Route::get('/messenger/form-login', 'LoginController@formLogin');
 Route::post('/messenger/login', 'App\Http\Controllers\LoginController@login');
 Route::post('/messenger/register', 'App\Http\Controllers\LoginController@register');

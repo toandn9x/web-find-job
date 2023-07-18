@@ -6,12 +6,11 @@
 <div class="wrapper">
     <div class="wrap">
 		<div class="wrap-hand">
-			<i class="fa fa-frown-o" aria-hidden="true"></i>
+			<img src="/workwise/images/sut-vao-dit.png" alt="">
 		</div>
 		<div class="forbidden">
-			<h1>OOPS !!</h1>
-			<h1>404</h1>
-			<b>Trang bạn tìm không tồn tại</b>
+			<h1>UNAUTHORIZED</h1>
+			<h1>401</h1>
 			<a href="/">Quay lại trang chủ</a>
 		</div>
 	</div>
@@ -28,17 +27,19 @@
 }
 .wrap-hand{
 	width: 100%;
-  margin: 0 auto;
+    margin: 0 auto;
+    height: 350px;
+    display: flex;
+    justify-content: center;
 }
-.wrap-hand i{
-	display: flex;
-	justify-content: center;
-	font-size: 300px;
+.wrap-hand img{
 	color: #e44d3a;
+    width: 400px;
+    height: 300px;
 }
 .forbidden{
 	width: 100%;
-  margin: 0 auto;
+    margin: 0 auto;
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -54,14 +55,6 @@
 	text-align: center;
 }
 .forbidden :nth-child(3){
-	font-size: 40px;
-	color: rgb(122, 14, 209);
-	font-weight: bold;
-	text-align: center;
-	display: block;
-	margin: 20px 0;
-}
-.forbidden :nth-child(4){
 	font-size: 20px;
 	color: rgb(242, 238, 245);
 	font-weight: bold;
@@ -69,11 +62,12 @@
 	background-color: #e44d3a;
 	border-radius: 5px;
 	display: block;
-  width: 200px;
-  height: 50px;
-  line-height: 50px;
-  margin: 0 auto;
-  margin-bottom: 60px;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    margin-top: 20px;
 }
 </style>
 @endsection
