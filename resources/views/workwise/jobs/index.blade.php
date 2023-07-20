@@ -55,11 +55,13 @@
                                                                         class="fa fa-calendar-check-o"
                                                                         aria-hidden="true"></i>{{ date('d-m-Y', strtotime($job->created_at)) }}
                                                                 </div>
-                                                                <div class="job_chat">
-                                                                    <a href="">
-                                                                        <i class="fa fa-weixin" aria-hidden="true"></i> Chat
-                                                                    </a>
-                                                                </div>
+                                                                @can('viewChat', $job)
+                                                                    <div class="job_chat">
+                                                                        <a href="{{ route('chat.index', $job->user_id) }}" target="_blank">
+                                                                            <i class="fa fa-weixin" aria-hidden="true"></i> Chat
+                                                                        </a>
+                                                                    </div>
+                                                                @endcan
                                                             </div>
                                                             <div class="job_money job_info" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" title="Lương"><i
@@ -194,7 +196,7 @@
                 <div class="footer">
                     <div class="footer_title">
                         @if (Auth::check())
-                            <img src="{{ Auth::user()->userInfo->CheckEmptyImage('/workwise/images/resources/user-pic.png') }}"
+                            <img src="{{ Auth::user()->userInfo->CheckEmptyImage() }}"
                                 alt="" id="avatar_user_login">
                             <span class="d-none" id="name_user_login">{{ Auth::user()->name }}</span>
                             <div class="wrp_ipt_comment">

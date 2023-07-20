@@ -8,9 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Chat extends Model
 {
     use HasFactory;
-
-    public function fromContact()
-    {
-        return $this->hasOne(User::class, 'id', 'from');
-    }
+    
 }

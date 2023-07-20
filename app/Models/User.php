@@ -78,4 +78,8 @@ class User extends Authenticatable
     public function company() {
         return $this->hasOne(Company::class);
     }
+
+    public function friends() {
+        return $this->belongsToMany(User::class, 'friends', 'user_from_id', 'user_to_id')->withPivot('status');
+    }
 }

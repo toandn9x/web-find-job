@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 // Route::get('/test', function () {
-//     return view('workwise.jobs.list');
+//     return view('workwise.chats.index');
 // });
 
 // Admin
@@ -102,6 +103,11 @@ Route::group([
             Route::post('/store', "CommentController@store");
             Route::post('/destroy', "CommentController@destroy");
             
+        });
+
+        Route::prefix('chat')->group(function () {
+            Route::get('/user/{id}', "ChatController@index")->name('chat.index');
+            Route::post('/message', "ChatController@store");
         });
     });
 

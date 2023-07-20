@@ -6,8 +6,10 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Job;
 use App\Policies\UserPolicy;
 use App\Policies\PostPolicy;
+use App\Policies\JobPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -20,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         User::class => UserPolicy::class,
         Post::class => PostPolicy::class,
+        Job::class => JobPolicy::class,
     ];
 
     /**

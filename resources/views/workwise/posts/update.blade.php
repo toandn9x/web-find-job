@@ -13,7 +13,7 @@
                     <div class="col-lg-12 mb-3">
                         <div id="wrapper-info-ps">
                             <div id="ps-info-avatar">
-                                <img src="{{ Auth::user()->userInfo->CheckEmptyImage('/workwise/images/resources/user-pic.png') }}"
+                                <img src="{{ Auth::user()->userInfo->CheckEmptyImage() }}"
                                     alt>
                             </div>
                             <div id="ps-info-name">
