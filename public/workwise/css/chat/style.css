@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.container-fluid {
+    height: 100vh;
+    background-color: #f4f7f6;
+    padding: 15px;
+}
+
+.container {
+    background: white;
+    min-width: 90%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px #0c0c0c57;
+    padding: 15px;
+}
+
+.chat-app {
+    height: 100%;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.chat-app::-webkit-scrollbar {
+    display: none;
+}
+
+.col-list-user {
+    border-right: 1px solid #e5e5e5;
+}
+
+.list-users {
+    margin-top: 10%;
+    min-height: 550px;
+    overflow: hidden;
+}
+
+.aa {
+    height: 500px;
+    overflow-y: auto;
+}
+
+.search {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 35px;
+}
+
+.icon-search,
+.icon-send {
+    width: 35px;
+    height: 100%;
+    background-color: #e0dddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: 1px solid #e0dddd;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.input-search,
+.input-message {
+    width: 80%;
+    height: 100%;
+    font-size: 13px;
+    text-indent: 5px;
+    outline: none;
+    border-left: none;
+    border: 1px solid #e5e5e5;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.search .input-search::placeholder {
+    font-size: 13px;
+    color: gray;
+}
+
+.col-info-user {
+    padding: 0;
+    overflow: hidden;
+}
+
+.wrapper-user {
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 1%;
+    box-shadow: 0 4px 2px -2px #80808024;
+}
+
+.info-user {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn-info-user {
+    margin-bottom: 5%;
+}
+
+.btn-info-user:hover {
+    border-radius: 10px;
+    background: #e5e5e5;
+}
+
+.info-image-friend {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.status-active {
+    display: flex;
+    font-size: 14px;
+    margin-left: 1%;
+}
+
+.status-active-dot {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status {
+    font-size: 11px;
+    color: gray;
+}
+
+.wrapper-content-message {
+    min-height: 550px;
+    overflow: hidden;
+    padding: 10px 15px;
+    margin-bottom: 3%;
+}
+
+.wrapper-message {
+    height: 40px;
+    margin-bottom: 1%;
+}
+
+.icon-send {
+    width: 40px;
+    cursor: pointer;
+}
+
+.input-message {
+    height: 100%;
+    width: 100%;
+    border-left: none;
+}
+
+.content-message {
+    list-style: none;
+    margin: 0;
+    height: 500px;
+    overflow-y: auto;
+    padding: 0 2%;
+}
+
+.clearfix {
+    font-size: 13px;
+    text-align: justify;
+    width: 50%;
+    clear: right;
+    margin-bottom: 2%;
+    line-break: anywhere;
+}
+
+.clearfix .message {
+    max-width: max-content;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.clearfix .me {
+    background: #0084ff;
+    color: white;
+}
+
+.clearfix .friend {
+    background: #e4e6eb;
+    color: black;
+}
+
+.message-of-you {
+    text-align: left;
+    float: right;
+    display: flex;
+    justify-content: end;
+}
+
+.info-me {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 2%;
+}
+
+.status-active-me {
+    flex-direction: unset;
+    align-items: center;
+    width: 80%;
+}
+
+.status-active-me .name-me {
+    margin-left: 2%;
+}
+
+.log-out {
+    width: 20%;
+    text-align: right;
+}
+
+.log-out i {
+    cursor: pointer;
+}
+
+.time-chat {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+    font-size: 11px;
+    color: gray;
+}
+
+.col-info-user {
+    display: block;
+}
+
+.col-empty-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+    padding: 0;
+}
+
+.dot {
+    display: none;
+    width: 10px;
+    height: 10px;
+    background-color: #007bff;
+    border-radius: 50%;
+}
+
+.bold-active {
+    font-weight: bold;
+}
+
+.dot-active {
+    display: block;
+}

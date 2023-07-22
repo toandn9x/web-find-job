@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('from')->unsigned()->comment('Thông tin bên người gửi');
-            $table->integer('to')->unsigned()->comment('Thông tin bên người nhận');
-            $table->text('text');
-            $table->boolean('read')->default(false);
+            $table->integer('user_from_id')->unsigned()->comment('ID bên người gửi');
+            $table->integer('user_to_id')->unsigned()->comment('ID bên người nhận');
+            $table->text('message')->nullable()->comment('Nội dung tin nhắn');
             $table->timestamps();
         });
     }

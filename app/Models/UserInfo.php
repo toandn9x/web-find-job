@@ -57,7 +57,7 @@ class UserInfo extends Model
     // $alternativeImage là ảnh thay thế khi người dùng avatar của người dùng rỗng
     //str_contains
     //strpos
-    public function CheckEmptyImage($alternativeImage) {
+    public function CheckEmptyImage() {
         if($this->avatar) {
             if(str_contains($this->avatar, 'https://')) {
                 return $this->avatar;
@@ -65,6 +65,6 @@ class UserInfo extends Model
                 return url(Storage::url($this->avatar));
             }
         }
-        return $alternativeImage;
+        return '/workwise/images/resources/user_empty.jpg';
     }
 }

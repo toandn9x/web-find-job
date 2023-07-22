@@ -16,7 +16,7 @@
                                     <div class="user-profile">
                                         <div class="username-dt">
                                             <div class="usr-pic">
-                                                <img src="{{ Auth::user()->userInfo->CheckEmptyImage('/workwise/images/resources/user-pic.png') }}"
+                                                <img src="{{ Auth::user()->userInfo->CheckEmptyImage() }}"
                                                     alt>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@
                             <div class="main-ws-sec">
                                 <div class="post-topbar">
                                     <div class="user-picy">
-                                        <img src="{{ Auth::user()->userInfo->CheckEmptyImage('/workwise/images/resources/user-pic.png') }}"
+                                        <img src="{{ Auth::user()->userInfo->CheckEmptyImage() }}"
                                             alt>
                                         <span> <b class="bold-name"> {!! Auth::user()->name !!} </b> ơi, bạn đang nghĩ gì thế
                                             ?</span>
@@ -133,11 +133,11 @@
                                     </div>
                                 </div>
                                 <div class="posts-section">
-                                    @if (isset($posts))
+                                    @if (isset($posts[0]))
                                         <div class="post-bar">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
-                                                    <img src="{{ $posts[0]->user->userInfo->CheckEmptyImage('/workwise/images/resources/user-pic.png') }}" class="avatar-user-post" alt>
+                                                    <img src="{{ $posts[0]->user->userInfo->CheckEmptyImage() }}" class="avatar-user-post" alt>
                                                     <div class="usy-name">
                                                         <h3 class="fw-bold">{!! $posts[0]->title !!}</h3>
                                                         <span class="created-post" data-bs-toggle="tooltip" data-placement="bottom" 

@@ -46,9 +46,9 @@
                             <div class="main-left-sidebar">
                                 <div class="user_profile">
                                     <div class="user-pro-img">
-                                        <img src="{{ $user->userInfo->CheckEmptyImage('/workwise/images/resources/user-pro-img.png') }}"
+                                        <img src="{{ $user->userInfo->CheckEmptyImage() }}"
                                             alt id="avatar"
-                                            data-old-avatar="{{ $user->userInfo->CheckEmptyImage('/workwise/images/resources/user-pro-img.png') }}">
+                                            data-old-avatar="{{ $user->userInfo->CheckEmptyImage() }}">
                                         <div class="add-dp" id="OpenImgUpload">
                                             <input type="file" id="file-change-avatar">
                                             <label id="btn-choose-avatar"><i class="fas fa-camera"></i></label>
@@ -720,7 +720,7 @@
                                             <div class="post-bar">
                                                 <div class="post_topbar">
                                                     <div class="usy-dt">
-                                                        <img src="{{ $post->user->userInfo->CheckEmptyImage('/workwise/images/resources/user-pic.png') }}"
+                                                        <img src="{{ $post->user->userInfo->CheckEmptyImage() }}"
                                                             class="avatar-user-post" alt>
                                                         <div class="usy-name">
                                                             <h3 class="fw-bold">{!! $post->title !!}</h3>

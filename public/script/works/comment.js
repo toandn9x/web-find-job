@@ -54,11 +54,12 @@ $(document).ready(function () {
             dataType: "JSON",
             success: function (response) {
                 $.each(response.data, function(key, val) {
-                    if(val.user.user_info.avatar.includes('https://')) {
-                        avatar = val.user.user_info.avatar;
-                    }else {
-                        avatar = "/storage/"+val.user.user_info.avatar;
+                    if(val.user.user_info.avatar != null) {
+                        avatar = val.user.user_info.avatar.includes('https://') ? val.user.user_info.avatar : "/storage/"+val.user.user_info.avatar;
+                    }else{
+                        avatar = "/workwise/images/resources/user_empty.jpg"
                     }
+                    
                     if(val.parent_id == 0) {
                         count++;
                         if(val.user_id == user_login_id) {
@@ -132,10 +133,10 @@ $(document).ready(function () {
                         //Hiển thị ra các bình luận phản hồi
                         $.each(response.data, function(keyChild, valChild) {
                             
-                            if(valChild.user.user_info.avatar.includes('https://')) {
-                                avatar = valChild.user.user_info.avatar;
-                            }else {
-                                avatar = "/storage/"+valChild.user.user_info.avatar;
+                            if(valChild.user.user_info.avatar != null) {
+                                avatar = valChild.user.user_info.avatar.includes('https://') ? valChild.user.user_info.avatar : "/storage/"+valChild.user.user_info.avatar;
+                            }else{
+                                avatar = "/workwise/images/resources/user_empty.jpg"
                             }
                             
                             if(valChild.parent_id == val.id) {
