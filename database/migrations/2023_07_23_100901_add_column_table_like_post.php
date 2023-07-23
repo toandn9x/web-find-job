@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('role')->nullable()->after('status')->default(1)->comment('Vai trò: 1-Người ứng tuyển, 2-Nhà tuyển dụng');
+        Schema::create('like_post', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->integer('post_id');
         });
     }
 
@@ -25,8 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
-        });
+        Schema::dropIfExists('like_post');
     }
 };

@@ -5,17 +5,21 @@ namespace App\Services;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\ImagePost;
+use App\Models\CommentPost;
 use Storage;
 use Auth;
 use Log;
+use Str;
 use Carbon\Carbon;
 
 class PostService
 {
     private $post;
+    private $comment;
 
     public function __construct() {
         $this->post = new Post;
+        $this->comment = new CommentPost;
     }
 
     public function index() {
@@ -27,7 +31,8 @@ class PostService
                         "images" => function($query) {
                             $query->select('post_id','path');
                         }])
-                        // ->orderBy('created_at', 'DESC')
+                        ->whereIn('status', [1,2])
+                        ->orderBy('created_at', 'DESC')
                         ->get();
         return $posts;
     }
@@ -70,6 +75,51 @@ class PostService
         }
     }
 
+    public function show($id) {
+        try {
+            $images = [];
+            $post = Post::select('id','user_id','content','background_post','title','status', 'created_at')
+                        ->with(['user' => function($query) {
+                            $query->select('id','name')->with(['userInfo' => function($query) {
+                                $query->select('user_id', 'avatar');
+                            }]);
+                        }, 'likes' => function($query) {
+                            $query->select('user_id')->count();
+                        }, 'comments' => function($query) {
+                            $query->select('post_id', 'content', 'user_id', 'created_at')
+                                ->with(['user' => function($query) {
+                                    $query->select('id', 'name')
+                                        ->with(['userInfo' => function($query) {
+                                            $query->select('user_id', 'avatar');
+                                        }]);
+                                }]);
+                        }])
+                        ->where('id', $id)
+                        ->first();
+                
+            if(!empty($post->images)) {
+                foreach ($post->images as $value) {
+                    $images[] = [
+                        'id' => $value->id,
+                        'path' => $value->image_url,
+                    ];
+                }
+               $post['imagePath'] = $images;
+               $post['checkLike'] = $post->checkUserLike();
+            }
+
+            return $post;
+
+        } catch (Exception $e) {
+            Log::error("Error show post", [ 
+                "method" => __METHOD__,                
+                "line" => __LINE__,                    
+                "message" => $id,
+            ]);
+            return false;
+        }
+    }
+
     public function edit($id) {
         try {
             
@@ -94,7 +144,7 @@ class PostService
             return $post;
 
         } catch (Exception $e) {
-            Log::error("Error show post", [ 
+            Log::error("Error edit post", [ 
                 "method" => __METHOD__,                
                 "line" => __LINE__,                    
                 "message" => $e->getMessage(),
@@ -165,12 +215,59 @@ class PostService
         }
     }
 
+    public function like(Request $request) {
+        try {
+            $data = $request->except('_token');
+            $user_id = Auth::user()->id;
+            $post = Post::find($data['_id']);
+           
+            if($post->checkUserLike()) {
+                $post->likes()->detach($user_id);
+            }else{
+                $post->likes()->attach($user_id);
+            }
+
+            return $post;
+        } catch (\Exception $e) {
+            Log::error('Error like post', [
+                "method" => __METHOD__,
+                "line" => __LINE__,
+                "message" => $e->getMessage(),
+                "data" => $request->all(),
+            ]);
+            return false;
+        }
+    }
+
+    public function comment(Request $request) {
+        try {
+            $data = $request->except('_token');
+            $comment = $this->comment;
+            $comment->post_id = $data['_id'];
+            $comment->user_id = Auth::user()->id;
+            $comment->content = $data['content'];
+            $comment->created_at = Carbon::now();
+            $comment->save();
+
+            return true;
+        } catch (\Exception $e) {
+            Log::error('Error comment post', [
+                "method" => __METHOD__,
+                "line" => __LINE__,
+                "message" => $e->getMessage(),
+                "data" => $request->all(),
+            ]);
+            return false;
+        }
+    }
+
     private function handleUploadPostImages($data, $id) {
         try {
             $file = $data;
+            $random = Str::random(40);
             $name = $file->getClientOriginalName();
             $name = current(explode('.',$name));
-            $name_image = $name.rand(0,99).'.'.$file->getClientOriginalExtension();
+            $name_image = $name.$random.'.'.$file->getClientOriginalExtension();
             $path = Storage::disk('public') ->putFileAs('posts', $file, $name_image);
 
             $image = new ImagePost();

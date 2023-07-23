@@ -21,6 +21,10 @@ class ChatController extends Controller
     public function index($id) {
         $data = $this->chat->show($id);
         
+        if(is_null($data)) {
+            abort(404);
+        }
+
         return view('workwise.chats.index', [
             'data' => $data,
         ]);

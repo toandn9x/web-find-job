@@ -25,5 +25,17 @@
     <link rel="stylesheet" href="/lightbox/lightbox.css">
     <link rel="stylesheet" href="/sweetalert2/sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        body::-webkit-scrollbar {
+            width: 5px;
+            height: 10px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color:#e44d3a;
+            border: 4px solid transparent;
+            border-radius: 8px;
+        }
+    </style>
     @yield('style')
 </head>

@@ -10,6 +10,7 @@ use App\Models\User;
 use Log;
 use Hash;
 use Auth;
+use Gate;
 
 class UserController extends Controller
 {
@@ -30,7 +31,13 @@ class UserController extends Controller
     }
 
     public function viewSettingProfile($id) {
+
         $user = $this->user->profile($id);
+
+        if(!Gate::allows('view', $user))
+        {
+            abort(403);
+        }
 
         return view('workwise.users.setting-profile', [
             'user' => $user,

@@ -11,6 +11,8 @@ use Auth;
 use Hash;
 use Socialite;
 use Log;
+use Mail;
+use Str;
 use Carbon\Carbon;
 
 class LoginController extends Controller
@@ -51,10 +53,38 @@ class LoginController extends Controller
             return response()->json(['data' => ['message' => 'Email hoặc mật khẩu không đúng!', 'status' => 1]], 200);
 
         } catch (\Exception $e) {
-            Log::error('Error get list banks', [
+            Log::error('Error login', [
                 'method' => __METHOD__,
                 'message' => $e->getMessage(),
                 'line' => __LINE__
+            ]);
+            return 'error';
+        }
+    }
+    
+    // Quên mật khẩu
+    public function forgetPass(Request $request) {
+        try {
+            $data = $request->except('_token');
+
+            if(!$this->checkUniqueEmail($data['email'])) {
+                return response()->json(['data' => ['error' => 'Email này không tồn tại.' ,'status' => 1]], 200);
+            }else {
+                $newPassWord = Str::random(8);
+                $user = $this->checkUniqueEmail($data['email']);
+                $data['name'] = $user->name;
+                $data['password'] = $newPassWord;
+                $this->changePassword($data['email'], $newPassWord);
+                $this->sendMail($data);
+                return response()->json(['data' => ['message' => 'success' ,'status' => 0]], 200);
+            }
+
+        } catch (\Exception $e) {
+            Log::error('Error forget pasword', [
+                'method' => __METHOD__,
+                'message' => $e->getMessage(),
+                'line' => __LINE__,
+                'data' => $request->all(),
             ]);
             return 'error';
         }
@@ -188,6 +218,20 @@ class LoginController extends Controller
     private function checkUniqueEmail($email) {
         $uniqueEmail = User::whereEmail($email)->first();
 
-        return $uniqueEmail ? true : false;
+        return $uniqueEmail ? $uniqueEmail : false;
+    }
+
+    private function sendMail($data) {
+        Mail::send('workwise.auth.forget-password', $data, function ($message) use($data) {
+            $message->from('admimxampp@gmail.com', 'DNDev');
+            $message->to($data['email']);
+            $message->subject('WorkWise khôi phục tài khoản.');
+        });
+    }
+
+    private function changePassword($email, $newPassWord) {
+        $user = User::whereEmail($email)->first();
+        $user->password = Hash::make($newPassWord);
+        $user->save();
     }
 }

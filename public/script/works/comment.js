@@ -191,11 +191,11 @@ $(document).ready(function () {
     $('.send_comment').on('keypress', function(event) {
         let content = $(this).val();
 
-        if(content.length > 150) {
-            $(this).css('height','100px');
-        }else{
-            $(this).css('height','40px');
-        }
+        // if(content.length > 150) {
+        //     $(this).css('height','100px');
+        // }else{
+        //     $(this).css('height','40px');
+        // }
 
         //Bình luận bài tin
         if(event.keyCode === 13 && !event.shiftKey) {
@@ -248,11 +248,11 @@ $(document).ready(function () {
         let content = $(this).val()
         let parent_id = $(this).data('id');
         let area = $(this);
-        if(content.length > 150) {
-            $(this).css('height','100px');
-        }else{
-            $(this).css('height','40px');
-        }
+        // if(content.length > 150) {
+        //     $(this).css('height','100px');
+        // }else{
+        //     $(this).css('height','40px');
+        // }
 
         // '\u00A0': Ký tự space = &nbsp;
         if(event.keyCode === 13 && !event.shiftKey) {
@@ -308,7 +308,7 @@ $(document).ready(function () {
                 '<div class="wrp_ipt_feedback">'+
                     '<img src="'+avatar+'" alt="">' +
                     '<div class="wrp_ipt_comment">'+
-                        '<textarea class="ipt_cm feedback_comment" placeholder="Viết bình luận của bạn" data-id="'+_id+'"></textarea>' +
+                        '<textarea class="ipt_cm feedback_comment" placeholder="Viết bình luận của bạn" oninput="check_data(this)" data-id="'+_id+'" max-length="250"></textarea>' +
                         '<div class="wrp_icon">'+
                             '<i class="fa fa-paper-plane-o icon_send" aria-hidden="true"></i>'
                         +'</div>'
@@ -373,13 +373,23 @@ $(document).ready(function () {
     function handleFormatDate(timeData) {
         let time = new Date(timeData);
 
-        let date = time.getDate();
-        let month = time.getMonth() + 1;
+        let date = time.getDate() < 10 ? '0'+time.getDate() : time.getDate();
+        let month = time.getMonth() + 1 < 10 ? '0'+(time.getMonth() + 1) : (time.getMonth() + 1);
         let year = time.getFullYear();
 
-        let hour = time.getHours();
-        let minute = time.getMinutes();
+        let hour = time.getHours() < 10 ? '0'+time.getHours() : time.getHours();
+        let minute = time.getMinutes() < 10 ? '0'+time.getMinutes() : time.getMinutes();
 
         return hour+':'+minute+' | '+date+'-'+month+'-'+year;
     }
 });
+
+function check_data(e) {
+    let data = $(e).val();
+
+    if (data == '') {
+        e.style.height = "40px"
+    }else{
+        e.style.height = (e.scrollHeight) + 'px'
+    }
+}

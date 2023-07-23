@@ -68,3 +68,16 @@ $(document).ready(function () {
         elem[0].scrollTop = elem[0].scrollHeight;
     }
 });
+
+function check_data(e) {
+    let wrapperMessage = $('.wrapper-message');
+    let data = $(e).val();
+
+    if (data == '') {
+        $(e).removeAttr('style');
+        wrapperMessage.css('height', '40px') ;
+    }else{
+        e.style.height = (e.scrollHeight) + 'px'
+        wrapperMessage.css('height', (e.scrollHeight) + 'px') ;
+    }
+}

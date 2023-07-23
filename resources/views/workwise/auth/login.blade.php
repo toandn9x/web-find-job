@@ -25,6 +25,24 @@
     input[type=radio] {
         accent-color: #e44d3a;
     }
+
+    #wrp_loading {
+        width: 100%;
+        height: 100%;
+        background: #8080803d;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #wrp_loading > img {
+        width: 50%;
+        height: auto;
+    }
 </style>
 <body class="sign-in">
     <div class="wrapper">
@@ -36,8 +54,8 @@
                             <div class="cmp-info">
                                 <div class="cm-logo">
                                     <img src="/workwise/images/cm-logo.png" alt>
-                                    <p>Workwise, là một nền tảng trao đổi trên mạng xã hội, nơi mọi người và chuyên gia
-                                        độc lập kết nối và cộng tác từ xa</p>
+                                    <p>Workwise, là một nền tảng giới thiệu việc làm và trao đổi trên mạng xã hội, nơi mọi người và chuyên gia
+                                        độc lập kết nối và cộng tác từ xa.</p>
                                 </div>
                                 <img src="/workwise/images/cm-main-img.png" alt>
                             </div>
@@ -76,7 +94,7 @@
                                                         </label>
                                                         <small>Ghi nhớ đăng nhập</small>
                                                     </div>
-                                                    <a href="#" title>Quên mật khẩu?</a>
+                                                    <a href="#" title id="btnForgetPass">Quên mật khẩu?</a>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 no-pdd">
@@ -155,6 +173,32 @@
                                         </form>
                                     </div>
                                 </div>
+
+                                <div class="sign_in_sec" id="tabForgetPass">
+                                    <h3>Quên mật khẩu ?</h3>
+                                    <div class="dff-tab current" id="tab-5">
+                                        <form action="{{ route('forget-password') }}" method="POST" id="forgetPassword" class="form-auth">
+                                        @csrf
+                                            <div class="row">
+                                                <div class="col-lg-12 no-pdd">
+                                                    <span class="error-register" style="color: #007bff">* Nhập email để khôi phục mật khẩu.</span>
+                                                    <div class="sn-field mt-2">
+                                                        <input type="text" name="email" class="enter-input" placeholder="Email" data-error="#errFgEmR">
+                                                        <i class="la la-envelope"></i>
+                                                    </div>
+                                                    <span id="errFgEmR" class="error-register">&nbsp;</span>
+                                                </div>
+                                               
+                                                <div class="col-lg-12 no-pdd">
+                                                    <button type="submit" value="submit">Gửi</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="wrp_loading">
+                                <img src="/workwise/images/resources/images/loading-gif-images-free-psd-templatespng-and-vector-download.gif" alt="">
                             </div>
                         </div>
                     </div>

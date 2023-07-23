@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/test', function () {
-//     return view('workwise.chats.index');
-// });
+Route::get('/test', function () {
+    return view('workwise.auth.forget-password');
+});
 
 // Admin
 Route::group([
@@ -26,8 +26,8 @@ Route::group([
 
     Route::get('login', 'LoginController@formLogin')->name('form-login');
     Route::post('/login', 'LoginController@login')->name('login');
-
     Route::post('/register', 'LoginController@register');
+    Route::post('/forget-password', "LoginController@forgetPass")->name('forget-password');
 
     Route::prefix('auth')->group(function () {
         Route::get('/facebook', 'LoginController@redirectToFacebook')->name('redirect-to-facebook');
@@ -58,10 +58,13 @@ Route::group([
 
         // Phần bài viết của người dùng
         Route::prefix('post')->group(function () {
+            Route::get('/show/{id}', "PostController@show");
             Route::post('/store', "PostController@store")->name('post.store');
             Route::post('/edit', "PostController@edit")->name('post.edit');
             Route::post('/update', "PostController@update")->name('post.update');
             Route::post('/destroy', "PostController@destroy")->name('post.destroy');
+            Route::post('/like', "PostController@like");
+            Route::post('/comment', "PostController@comment");
         });
 
         // Profile
@@ -114,18 +117,3 @@ Route::group([
     //Đăng xuất tài khoản
     Route::get('/logout','LoginController@logout');
 });
-Route::get('/404', function(){
-    return view('workwise.errors.404');
-});
-Route::get('/403', function(){
-    return view('workwise.errors.403');
-});
-Route::get('/401', function(){
-    return view('workwise.errors.401');
-});
-Route::get('/messenger/form-login', 'LoginController@formLogin');
-Route::post('/messenger/login', 'App\Http\Controllers\LoginController@login');
-Route::post('/messenger/register', 'App\Http\Controllers\LoginController@register');
-Route::get("/verifiablde-email", 'App\Http\Controllers\LoginController@verifiableEmail');
-Route::post("/check-verifiablde-email", 'App\Http\Controllers\LoginController@checkVerifiableEmail');
-Route::get("/send-again-email", 'App\Http\Controllers\LoginController@sendAgainEmail');

@@ -58,7 +58,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = $this->post->show($id);
+
+        return $post ? $this->responseSuccess($post) : $this->responseError();
     }
 
     /**
@@ -97,6 +99,22 @@ class PostController extends Controller
     {
         $data = $request->only("post_id");
         $post = $this->post->destroy($data['post_id']);
+
+        return $post ? $this->responseSuccess() : $this->responseError();
+    }
+
+    public function like(Request $request) {
+        $post = $this->post->like($request);
+
+        $data = [
+            'count' => count($post->likes),
+        ];
+
+        return $post ? $this->responseSuccess($data) : $this->responseError();
+    }
+
+    public function comment(Request $request) {
+        $post = $this->post->comment($request);
 
         return $post ? $this->responseSuccess() : $this->responseError();
     }

@@ -12,31 +12,17 @@
                     <div class="col-lg-4">
                         <div class="acc-leftbar">
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-acc-tab" data-toggle="tab" href="#nav-acc"
-                                    role="tab" aria-controls="nav-acc" aria-selected="true"><i
-                                        class="la la-cogs"></i>Account Setting</a>
-                                <a class="nav-item nav-link" id="nav-status-tab" data-toggle="tab" href="#nav-status"
-                                    role="tab" aria-controls="nav-status" aria-selected="false"><i
-                                        class="fa fa-line-chart"></i>Status</a>
+                                <a class="nav-item nav-link active" id="security" data-toggle="tab" href="#security-login"
+                                    role="tab" aria-controls="security-login" aria-selected="false"><i
+                                        class="fa fa-user-secret"></i>Thông tin liên hệ và cơ bản</a>
                                 <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab" href="#nav-password"
                                     role="tab" aria-controls="nav-password" aria-selected="false"><i
                                         class="fa fa-lock"></i>Thay đổi mật khẩu</a>
-                                <a class="nav-item nav-link" id="nav-notification-tab" data-toggle="tab"
-                                    href="#nav-notification" role="tab" aria-controls="nav-notification"
-                                    aria-selected="false"><i class="fa fa-flash"></i>Notifications</a>
-                                <a class="nav-item nav-link" id="nav-privcy-tab" data-toggle="tab" href="#privcy"
-                                    role="tab" aria-controls="privacy" aria-selected="false"><i
-                                        class="fa fa-group"></i>Requests</a>
-                                <a class="nav-item nav-link" id="security" data-toggle="tab" href="#security-login"
-                                    role="tab" aria-controls="security-login" aria-selected="false"><i
-                                        class="fa fa-user-secret"></i>Thông tin liên hệ và cơ bản</a>
-                                {{-- @if ($user->can('viewCompany', $user)) --}}
                                 @can('viewCompany', $user)
                                     <a class="nav-item nav-link" id="nav-privacy-tab" data-toggle="tab" href="#privacy"
                                     role="tab" aria-controls="privacy" aria-selected="false"><i
                                         class="la la-building"></i>Thông tin công ty</a>
                                 @endcan
-                                {{-- @endif --}}
                                 <a class="nav-item nav-link" id="nav-blockking-tab" data-toggle="tab" href="#blockking"
                                         role="tab" aria-controls="blockking" aria-selected="false"><i
                                             class="fa fa-cc-diners-club"></i>FAQ</a>
@@ -45,116 +31,6 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade" id="nav-acc" role="tabpanel" aria-labelledby="nav-acc-tab">
-                                <div class="acc-setting">
-                                    <h3>Account Setting</h3>
-                                    <form>
-                                        <div class="notbar">
-                                            <h4>Notification Sound</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                                                pretium nulla quis erat dapibus, varius hendrerit neque suscipit.
-                                                Integer in ex euismod, posuere lectus id</p>
-                                            <div class="toggle-btn">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                                                    <label class="custom-control-label" for="customSwitch1"></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="notbar">
-                                            <h4>Notification Email</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                                                pretium nulla quis erat dapibus, varius hendrerit neque suscipit.
-                                                Integer in ex euismod, posuere lectus id</p>
-                                            <div class="toggle-btn">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                                                    <label class="custom-control-label" for="customSwitch2"></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="notbar">
-                                            <h4>Chat Message Sound</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                                                pretium nulla quis erat dapibus, varius hendrerit neque suscipit.
-                                                Integer in ex euismod, posuere lectus id</p>
-                                            <div class="toggle-btn">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="customSwitch3">
-                                                    <label class="custom-control-label" for="customSwitch3"></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="save-stngs">
-                                            <ul>
-                                                <li><button type="submit">Save Setting</button></li>
-                                                <li><button type="submit">Restore Setting</button></li>
-                                            </ul>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-status" role="tabpanel" aria-labelledby="nav-status-tab">
-                                <div class="acc-setting">
-                                    <h3>Profile Status</h3>
-                                    <div class="profile-bx-details">
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <div class="profile-bx-info">
-                                                    <div class="pro-bx">
-                                                        <img src="/workwise/images/pro-icon1.png" alt>
-                                                        <div class="bx-info">
-                                                            <h3>$5,145</h3>
-                                                            <h5>Total Income</h5>
-                                                        </div>
-                                                    </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <div class="profile-bx-info">
-                                                    <div class="pro-bx">
-                                                        <img src="/workwise/images/pro-icon2.png" alt>
-                                                        <div class="bx-info">
-                                                            <h3>$4,745</h3>
-                                                            <h5>Widthraw</h5>
-                                                        </div>
-                                                    </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <div class="profile-bx-info">
-                                                    <div class="pro-bx">
-                                                        <img src="/workwise/images/pro-icon3.png" alt>
-                                                        <div class="bx-info">
-                                                            <h3>$1,145</h3>
-                                                            <h5>Sent</h5>
-                                                        </div>
-                                                    </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <div class="profile-bx-info">
-                                                    <div class="pro-bx">
-                                                        <img src="/workwise/images/pro-icon4.png" alt>
-                                                        <div class="bx-info">
-                                                            <h3>130</h3>
-                                                            <h5>Total Projects</h5>
-                                                        </div>
-                                                    </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro-work-status">
-
-                                    </div>
-                                </div>
-                            </div>
                             {{-- Start thay đổi mật khẩu --}}
                             <div class="tab-pane fade" id="nav-password" role="tabpanel"
                                 aria-labelledby="nav-password-tab">
@@ -200,203 +76,9 @@
                                 </div>
                             </div>
                             {{-- End thay đổi mật khẩu --}}
-                            <div class="tab-pane fade" id="nav-notification" role="tabpanel"
-                                aria-labelledby="nav-notification-tab">
-                                <div class="acc-setting">
-                                    <h3>Notifications</h3>
-                                    <div class="notifications-list">
-                                        <div class="notfication-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/ny-img1.png" alt>
-                                            </div>
-                                            <div class="notification-info">
-                                                <h3><a href="#" title>Jassica William</a> Comment on your project.
-                                                </h3>
-                                                <span>2 min ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="notfication-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/ny-img2.png" alt>
-                                            </div>
-                                            <div class="notification-info">
-                                                <h3><a href="#" title>Poonam Verma</a> Bid on your Latest project.
-                                                </h3>
-                                                <span>2 min ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="notfication-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/ny-img3.png" alt>
-                                            </div>
-                                            <div class="notification-info">
-                                                <h3><a href="#" title>Tonney Dhman</a> Comment on your project.</h3>
-                                                <span>2 min ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="notfication-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/ny-img1.png" alt>
-                                            </div>
-                                            <div class="notification-info">
-                                                <h3><a href="#" title>Jassica William</a> Comment on your project.
-                                                </h3>
-                                                <span>2 min ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="notfication-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/ny-img1.png" alt>
-                                            </div>
-                                            <div class="notification-info">
-                                                <h3><a href="#" title>Jassica William</a> Comment on your project.
-                                                </h3>
-                                                <span>2 min ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="notfication-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/ny-img2.png" alt>
-                                            </div>
-                                            <div class="notification-info">
-                                                <h3><a href="#" title>Poonam Verma </a> Bid on your Latest project.
-                                                </h3>
-                                                <span>2 min ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="notfication-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/ny-img3.png" alt>
-                                            </div>
-                                            <div class="notification-info">
-                                                <h3><a href="#" title>Tonney Dhman</a> Comment on your project</h3>
-                                                <span>2 min ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="notfication-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/ny-img1.png" alt>
-                                            </div>
-                                            <div class="notification-info">
-                                                <h3><a href="#" title>Jassica William</a> Comment on your project.
-                                                </h3>
-                                                <span>2 min ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="privcy" role="tabpanel" aria-labelledby="nav-privcy-tab">
-                                <div class="acc-setting">
-                                    <h3>Requests</h3>
-                                    <div class="requests-list">
-                                        <div class="request-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/r-img1.png" alt>
-                                            </div>
-                                            <div class="request-info">
-                                                <h3>Jessica William</h3>
-                                                <span>Graphic Designer</span>
-                                            </div>
-                                            <div class="accept-feat">
-                                                <ul>
-                                                    <li><button type="submit" class="accept-req">Accept</button>
-                                                    </li>
-                                                    <li><button type="submit" class="close-req"><i
-                                                                class="la la-close"></i></button></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="request-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/r-img2.png" alt>
-                                            </div>
-                                            <div class="request-info">
-                                                <h3>John Doe</h3>
-                                                <span>PHP Developer</span>
-                                            </div>
-                                            <div class="accept-feat">
-                                                <ul>
-                                                    <li><button type="submit" class="accept-req">Accept</button>
-                                                    </li>
-                                                    <li><button type="submit" class="close-req"><i
-                                                                class="la la-close"></i></button></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="request-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/r-img3.png" alt>
-                                            </div>
-                                            <div class="request-info">
-                                                <h3>Poonam</h3>
-                                                <span>Wordpress Developer</span>
-                                            </div>
-                                            <div class="accept-feat">
-                                                <ul>
-                                                    <li><button type="submit" class="accept-req">Accept</button>
-                                                    </li>
-                                                    <li><button type="submit" class="close-req"><i
-                                                                class="la la-close"></i></button></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="request-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/r-img4.png" alt>
-                                            </div>
-                                            <div class="request-info">
-                                                <h3>Bill Gates</h3>
-                                                <span>C & C++ Developer</span>
-                                            </div>
-                                            <div class="accept-feat">
-                                                <ul>
-                                                    <li><button type="submit" class="accept-req">Accept</button>
-                                                    </li>
-                                                    <li><button type="submit" class="close-req"><i
-                                                                class="la la-close"></i></button></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="request-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/r-img5.png" alt>
-                                            </div>
-                                            <div class="request-info">
-                                                <h3>Jessica William</h3>
-                                                <span>Graphic Designer</span>
-                                            </div>
-                                            <div class="accept-feat">
-                                                <ul>
-                                                    <li><button type="submit" class="accept-req">Accept</button>
-                                                    </li>
-                                                    <li><button type="submit" class="close-req"><i
-                                                                class="la la-close"></i></button></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="request-details">
-                                            <div class="noty-user-img">
-                                                <img src="/workwise/images/resources/r-img6.png" alt>
-                                            </div>
-                                            <div class="request-info">
-                                                <h3>John Doe</h3>
-                                                <span>PHP Developer</span>
-                                            </div>
-                                            <div class="accept-feat">
-                                                <ul>
-                                                    <li><button type="submit" class="accept-req">Accept</button>
-                                                    </li>
-                                                    <li><button type="submit" class="close-req"><i
-                                                                class="la la-close"></i></button></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             {{-- Start thông tin liên hệ và cơ bản --}}
-                            <div class="tab-pane fade" id="security-login" role="tabpanel"
+                            <div class="tab-pane fade active show" id="security-login" role="tabpanel"
                                 aria-labelledby="security">
                                 <div class="privacy security">
                                     <div class="row">
@@ -756,7 +438,7 @@
                             </div>
                             @can('viewCompany', $user)
                             {{-- Start thông tin công ty --}}
-                            <div class="tab-pane fade active show" id="privacy" role="tabpanel" aria-labelledby="nav-privacy-tab">
+                            <div class="tab-pane fade" id="privacy" role="tabpanel" aria-labelledby="nav-privacy-tab">
                                 <div class="privacy">
                                     <div class="row">
                                         <div class="col-12">

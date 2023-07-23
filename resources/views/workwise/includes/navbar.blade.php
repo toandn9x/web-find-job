@@ -2,22 +2,22 @@
     <div class="container">
         <div class="header-data">
             <div class="logo">
-                <a href="{{ route('home') }}" title><img src="/workwise/images/logo.png" alt></a>
+                <a href="{{ route('home') }}" title id="logo"><img src="/workwise/images/logo.png" alt> <span id="name_logo">WorkWise</span></a>
             </div>
             <div class="search-bar">
             </div>
             <nav>
                 <ul>
                     <li>
-                        <a href="{{ route('home') }}" title>
-                            <span><img src="/workwise/images/icon5.png" alt></span>
-                            Tìm việc làm
-                        </a>
-                    </li>
-                    <li>
                         <a href="index.html" title>
                             <span><img src="/workwise/images/icon1.png" alt></span>
                             Trang chủ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('home') }}" title>
+                            <span><img src="/workwise/images/icon5.png" alt></span>
+                            Tìm việc làm
                         </a>
                     </li>
                     @if (Auth::check())
@@ -85,11 +85,13 @@
                                     </a>
                                 </li>
                             @endif
-                            <li><a href="#" title>Privacy</a></li>
-                            <li><a href="#" title>Faqs</a></li>
-                            <li><a href="#" title>Terms & Conditions</a></li>
+                            <li>
+                                <a href="{{ route('logout') }}" title>
+                                    <img src="/workwise/images/icons/ic_log_out.svg" alt=""> Đăng xuất
+                                </a>
+                            </li>
+                            
                         </ul>
-                        <h3 class="tc"><a href="{{ route('logout') }}" title>Đăng xuất</a></h3>
                     </div>
                 </div>
             @else

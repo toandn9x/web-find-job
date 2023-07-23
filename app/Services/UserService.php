@@ -28,7 +28,13 @@ class UserService {
 
     public function profile($id) {
         $user = User::select('id','name','email','role')
-                ->with(['posts', 'userInfo', 'company'])
+                ->with(['posts' => function($query) use($id) {
+                    if(Auth::user()->id == $id) {
+                        $query->whereIn('status', [1,2,3]);
+                    }else{
+                        $query->whereIn('status', [1,2]);
+                    }
+                }, 'userInfo', 'company', 'friends'])
                 ->where('id', $id)
                 ->first();
 

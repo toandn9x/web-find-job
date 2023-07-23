@@ -84,13 +84,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-color: 1px solid #e0dddd;
+    border: 1px solid #e0dddd;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
-.input-search,
-.input-message {
+.input-search {
     width: 80%;
     height: 100%;
     font-size: 13px;
@@ -100,6 +99,24 @@ body {
     border: 1px solid #e5e5e5;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+.input-message {
+    width: 80%;
+    height: 40px;
+    min-height: 40px;
+    max-height: 132px;
+    font-size: 13px;
+    text-indent: 5px;
+    outline: none;
+    border-left: none;
+    border: 1px solid #e5e5e5;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    resize: none;
+    line-height: 25px;
+    padding: 7px 5px;
+    overflow-y: hidden;
 }
 
 .search .input-search::placeholder {
@@ -167,6 +184,8 @@ body {
 
 .wrapper-message {
     height: 40px;
+    min-height: 40px;
+    max-height: 132px;
     margin-bottom: 1%;
 }
 

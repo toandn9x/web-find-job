@@ -63,7 +63,7 @@
                                         <p class="tit_detail_post mt-5">Mô tả công việc</p>
                                         <div class="row">
                                             <div class="col-lg-12 p-0 mt-2 text_content ak">
-                                                {!! $job->descirption !!}
+                                                {!! $job->description !!}
                                             </div>
                                         </div>
                                         <p class="tit_detail_post mt-5 ak">Yêu cầu</p>

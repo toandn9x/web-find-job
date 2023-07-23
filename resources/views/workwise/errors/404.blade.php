@@ -12,7 +12,7 @@
 			<h1>OOPS !!</h1>
 			<h1>404</h1>
 			<b>Trang bạn tìm không tồn tại</b>
-			<a href="/">Quay lại trang chủ</a>
+			<a href="{{ strpos($_SERVER['REQUEST_URI'],'chat') ? route('chat.index', Auth::user()->id) : '/' }}">Quay lại</a>
 		</div>
 	</div>
 </div>
