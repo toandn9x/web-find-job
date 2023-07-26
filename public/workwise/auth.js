@@ -184,6 +184,63 @@ $(document).ready(function () {
             }
         });
     });
+
+    var validateForgetPass = $('#forgetPassword').validate({
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+        rules: {
+            "email": {
+                required: true,
+                email: true,
+            },
+        },
+        messages: {
+            "email": {
+                required: "Vui lòng nhập email.",
+                email: "Email không đúng định dạng.",
+            },
+        },
+
+        errorPlacement: function(error, element) {
+            var placement = $(element).data('error');
+            if (placement) {
+              $(placement).append(error)
+            } else {
+              error.insertAfter(element);
+            }
+          }
+    });
+
+    $('#forgetPassword').on('submit', function(event) {
+        event.preventDefault();
+
+        if(!validateForgetPass.valid()) {
+            return false;
+        }
+
+        $('#wrp_loading').css('display', 'flex');
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: new FormData(this),
+            dataType: "JSON",
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (response) {
+                if(response.data.status == 1) {
+                    $('#errFgEmR').append('<label>'+ response.data.error +'</label>');
+                }else{
+                    toastr.success('Mật khẩu đã được khôi phục vui lòng kiểm tra email của bạn.');
+                    $('#wrp_loading').css('display', 'none');
+                    $('.form-auth')[2].reset();
+                    $('#tab-1, #li-tab-1').addClass('current');
+                    $('#tabForgetPass').removeClass('current');
+                }
+            }
+        });
+    })
    
     $(document).on('keyup', '.enter-input', function() {
         var element = $(this).data('error');
@@ -201,8 +258,7 @@ $(document).ready(function () {
             iptCompany.empty();
             iptPhone.empty();
             iptAddress.empty();
-        }
-        
+        }   
     });
 
     $('.checkbox-choose-role').on('change', function() {
@@ -241,6 +297,13 @@ $(document).ready(function () {
         }
         $('.error-register').children("label").remove();
     });
+
+    $('#btnForgetPass').on('click', function(event) {
+        event.preventDefault();
+
+        $('#tabForgetPass').addClass('current');
+        $('#tab-1, #tab-2, #li-tab-1, #li-tab-2').removeClass('current');
+    })
 
     // Function
     function checkPhone(number) {

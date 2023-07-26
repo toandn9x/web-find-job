@@ -54,7 +54,6 @@ class UserInfo extends Model
     }
 
     // Hàm kiểm tra avatar của người dùng với tham số "alternativeImage":
-    // $alternativeImage là ảnh thay thế khi người dùng avatar của người dùng rỗng
     //str_contains
     //strpos
     public function CheckEmptyImage() {

@@ -15,6 +15,9 @@
 <script>
     $(document).ready(function() {
         $('[data-bs-toggle="tooltip"]').tooltip();
+        $(window).on('scroll', function() {
+            $('header').toggleClass('header_fixed', window.scrollY > 100);
+        })
     });
 </script>
 <script>

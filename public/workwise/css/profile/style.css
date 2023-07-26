@@ -1,3 +1,29 @@
+header {
+    top: 10px !important;
+    left: 10px !important;
+    transition: 0.7s !important;
+}
+
+.header_fixed {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 999;
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+}
+
+#name_logo {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    font-style: italic;
+    margin-left: 10%;
+}
+
 #wrapper-info-ps #ps-info-avatar img {
     width: 40px !important;
     height: 40px !important;

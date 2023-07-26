@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('role')->nullable()->after('status')->default(1)->comment('Vai trò: 1-Người ứng tuyển, 2-Nhà tuyển dụng');
+        Schema::create('comment_post', function (Blueprint $table) {
+            $table->id();
+            $table->integer('post_id')->index();
+            $table->integer('user_id')->nullable();
+            $table->text('content')->nullable()->comment('Nội dung bình luận');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
-        });
+        Schema::dropIfExists('comment_post');
     }
 };

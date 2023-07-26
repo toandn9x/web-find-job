@@ -25,7 +25,7 @@ class ChatService
                 ->where('id', $id)
                 ->with(['userInfo', 'company', 'friends'])
                 ->firstOrFail();
-
+                
             if(Auth::user()->id != $id) {
                 $this->handleCheckMakeFriend($user);
             }

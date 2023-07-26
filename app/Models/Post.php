@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 use Str;
+use Auth;
 
 class Post extends Model
 {
@@ -39,14 +40,6 @@ class Post extends Model
         return $day. ', '. $this->getFormatDateAttribute(). ' lúc '. date('H:i', strtotime($this->created_at));
     }
 
-    public function user() {
-        return $this->beLongsTo(User::class,'user_id', 'id');
-    }
-
-    public function images() {
-        return $this->hasMany(ImagePost::class);
-    }
-
     function formatDay($day) {
         $d = "";
         switch ($day) {
@@ -73,5 +66,31 @@ class Post extends Model
                 break;
         }
         return $d;
+    }
+
+    public function checkUserLike() {
+        $check = $this->likes()->where('user_id', Auth::user()->id)->first();
+
+        if($check) {
+            return true;
+        }
+        return false;
+        
+    }
+
+    public function user() {
+        return $this->beLongsTo(User::class,'user_id', 'id');
+    }
+
+    public function images() {
+        return $this->hasMany(ImagePost::class);
+    }
+
+    public function likes() {
+        return $this->belongsToMany(User::class, 'like_post');
+    }
+
+    public function comments() {
+        return $this->hasMany(CommentPost::class);
     }
 }

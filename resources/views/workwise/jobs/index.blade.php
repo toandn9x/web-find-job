@@ -200,7 +200,7 @@
                                 alt="" id="avatar_user_login">
                             <span class="d-none" id="name_user_login">{{ Auth::user()->name }}</span>
                             <div class="wrp_ipt_comment">
-                                <textarea class="ipt_cm send_comment" placeholder="Viết bình luận của bạn" required></textarea>
+                                <textarea class="ipt_cm send_comment" placeholder="Viết bình luận của bạn" oninput="check_data(this)" maxlength="250" required></textarea>
                                 <div class="wrp_icon">
                                     <i class="fa fa-paper-plane-o icon_send" aria-hidden="true"></i>
                                 </div>

@@ -77,11 +77,11 @@
                         </div>
                         <div class="col-12 d-flex justify-center align-items-center wrapper-message">
                             <i class="fa fa-paper-plane icon-send" aria-hidden="true"></i>
-                            <input type="text" class="input-message" id="send-message" placeholder="Nhập tin nhắn">
+                            <textarea id="send-message" class="input-message" placeholder="Nhập tin nhắn" oninput="check_data(this)"></textarea>
                         </div>
                     </div>
                 @else
-                    <div class="col-12 order-lg-2 order-1 col-empty-message">
+                    <div class="col-lg-8 col-12 order-lg-8 order-1 col-empty-message">
                         <h5>Hãy chọn một đoạn chat hoặc bắt đầu cuộc trò chuyện mới</h5>
                     </div>
                 @endif

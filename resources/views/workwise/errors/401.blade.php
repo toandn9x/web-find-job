@@ -11,14 +11,13 @@
 		<div class="forbidden">
 			<h1>UNAUTHORIZED</h1>
 			<h1>401</h1>
-			<a href="/">Quay lại trang chủ</a>
+			<a href="{{ route('form-login') }}">Đăng nhập</a>
 		</div>
 	</div>
 </div>
 <style>
 .wrapper{
 	width: 100%;
-	/* height: 90vh; */
 }
 .wrap{
 	width: 800px;

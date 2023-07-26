@@ -26,7 +26,7 @@ DB_PASSWORD=
 ``` bash
 composer install
 
-php artisan generate:key
+php artisan key:generate
 
 npm install
 
