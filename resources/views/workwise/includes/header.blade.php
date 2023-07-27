@@ -34,7 +34,7 @@
         body::-webkit-scrollbar-thumb {
             background-color:#e44d3a;
             border: 4px solid transparent;
-            border-radius: 8px;
+            /* border-radius: 8px; */
         }
     </style>
     @yield('style')

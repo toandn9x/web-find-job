@@ -120,6 +120,7 @@
                                         @csrf
                                             <div class="row">
                                                 <div class="col-lg-12 no-pdd">
+                                                    <p style="font-size:12px; color:red">* Bạn có thể đăng tin tuyển dụng với vai trò nhà tuyển dụng.</p>
                                                     <div class="checky-sec st2 d-flex justify-content-between align-items-center mt-0 mb-3">
                                                         <div class="d-flex align-items-center">
                                                             <input type="radio" name="role" id="c2" class="checkbox-choose-role candidate" value="1" checked>

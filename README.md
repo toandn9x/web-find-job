@@ -22,6 +22,11 @@ DB_USERNAME=
 DB_PASSWORD=
 ```
 
+- And Change BROADCAST_DRIVER in file .env
+``` bash
+BROADCAST_DRIVER=pusher
+```
+
 2. Install Package
 ``` bash
 composer install
@@ -32,7 +37,15 @@ npm install
 
 php artisan migrate
 
+php artisan db:seed
+
 php artisan storage:link
 
 php artisan ser
+```
+
+3. Run
+``` bash
+Page client: localhost:8000
+Page admin: localhost:8000/admin
 ```

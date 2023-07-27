@@ -2,20 +2,25 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/test', function () {
-    return view('workwise.auth.forget-password');
-});
-
 // Admin
 Route::group([
     'namespace' => "Admin",
     'prefix' => 'admin',
-    // 'middleware' => 'localization'
 ], function () {
-    Route::get('/', 'DashboardController@index');
+    Route::group([
+        'middleware' => ['auth.admin', 'PreventBackHistory']
+    ], function() {
+        Route::get('/', 'DashboardController@index')->name('admin.home');
+        Route::get('/auth/logout', "Auth\LoginController@logout")->name('admin.logout');
+    });
 
-    // Thay đổi ngôn ngữ
-    Route::get('/change-language/{language}', 'LangController@changeLanguage')->name('change-language');
+    Route::group([
+        'namespace' => "Auth",
+        'prefix' => 'auth',
+    ], function() {
+        Route::get('/login', "LoginController@formLogin");
+        Route::post('/login', "LoginController@login")->name('admin.login');
+    });
 });
 
 // Client
@@ -41,6 +46,9 @@ Route::group([
 });
 
 //Giao diện chính
+Route::get('/home', function() {
+    return view('workwise.home.home');
+});
 Route::get('/', "Client\JobController@index")->name('home');
 Route::get('/job/detail/{id}', "Client\JobController@show")->name('job.detail');
 
