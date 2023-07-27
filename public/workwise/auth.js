@@ -231,6 +231,7 @@ $(document).ready(function () {
             success: function (response) {
                 if(response.data.status == 1) {
                     $('#errFgEmR').append('<label>'+ response.data.error +'</label>');
+                    $('#wrp_loading').css('display', 'none');
                 }else{
                     toastr.success('Mật khẩu đã được khôi phục vui lòng kiểm tra email của bạn.');
                     $('#wrp_loading').css('display', 'none');

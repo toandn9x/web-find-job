@@ -12,22 +12,11 @@
         {{-- Main Content --}}
         @yield('main-content')
     </div>
-    <footer>
+    <footer class="p-3">
         <div class="footy-sec mn no-margin">
-            <div class="container">
-                <ul>
-                    <li><a href="help-center.html" title>Help Center</a></li>
-                    <li><a href="about.html" title>About</a></li>
-                    <li><a href="#" title>Privacy Policy</a></li>
-                    <li><a href="#" title>Community Guidelines</a></li>
-                    <li><a href="#" title>Cookies Policy</a></li>
-                    <li><a href="#" title>Career</a></li>
-                    <li><a href="forum.html" title>Forum</a></li>
-                    <li><a href="#" title>Language</a></li>
-                    <li><a href="#" title>Copyright Policy</a></li>
-                </ul>
-                <p><img src="/workwise/images/copy-icon2.png" alt>Copyright 2023</p>
+            <div class="container d-flex justify-content-center align-items-lg-center">
                 <img class="fl-rgt" src="/workwise/images/logo2.png" alt>
+                <p>&copy; Copyright 2023. Được phát triển bởi DNDev</p>
             </div>
         </div>
     </footer>

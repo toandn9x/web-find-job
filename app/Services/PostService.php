@@ -37,6 +37,11 @@ class PostService
         return $posts;
     }
 
+    public function showAll() {
+        $posts = Post::all();
+        return $posts;
+    }
+
     public function store(Request $request) {
         try {
             $post = $this->post;

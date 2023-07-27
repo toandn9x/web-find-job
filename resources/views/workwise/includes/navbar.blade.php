@@ -9,7 +9,7 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="index.html" title>
+                        <a href="{{ url('/home') }}" title>
                             <span><img src="/workwise/images/icon1.png" alt></span>
                             Trang chủ
                         </a>
@@ -23,7 +23,7 @@
                     @if (Auth::check())
                         <li>
                             <a href="{{ route('home.socail') }}" title>
-                                <span><img src="/workwise/images/icon3.png" alt></span>
+                                <span><i class="fa fa-envira" aria-hidden="true"></i></span>
                                 Mạng xã hội
                             </a>
                         </li>
