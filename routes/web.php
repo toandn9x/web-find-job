@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/test', function() {
-//     return view('workwise.companies.index');
-// });
-
 // Admin
 Route::group([
     'namespace' => "Admin",
@@ -128,6 +124,7 @@ Route::group([
         Route::prefix('chat')->group(function () {
             Route::get('/user/{id}', "ChatController@index")->name('chat.index');
             Route::post('/message', "ChatController@store");
+            Route::get('/search', "ChatController@search");
         });
     });
 

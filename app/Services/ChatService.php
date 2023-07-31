@@ -110,6 +110,31 @@ class ChatService
         }
     }
 
+    public function search($request) {
+        if($request['q'] != '') {
+            $users = User::select('id', 'name')
+                    ->where('name', 'LIKE', '%'. $request['q'] .'%')
+                    ->whereNotIn('id', [Auth::user()->id])
+                    ->with(['userInfo' => function($query) {
+                        $query->select('user_id', 'avatar');
+                    }, 'company' => function($query) {
+                        $query->select('user_id' ,'name');
+                    }])
+                    ->get();
+        }else{
+            $users = Auth::user()->friends()
+                    ->select('id', 'name')
+                    ->with(['userInfo' => function($query) {
+                        $query->select('user_id', 'avatar');
+                    }, 'company' => function($query) {
+                        $query->select('user_id' ,'name');
+                    }])->get();
+        }
+        
+
+        return $users;
+    }
+
     private function handleCheckMakeFriend($data) {
         $user_from = Auth::user();
         $user_to = $data;
