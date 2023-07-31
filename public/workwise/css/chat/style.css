@@ -74,6 +74,7 @@ body {
     justify-content: start;
     align-items: center;
     height: 35px;
+    position: relative;
 }
 
 .icon-search,
@@ -302,4 +303,10 @@ body {
 
 .dot-active {
     display: block;
+}
+
+.name-company {
+    font-size: 13px;
+    color: black;
+    font-weight: unset;
 }

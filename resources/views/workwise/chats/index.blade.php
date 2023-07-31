@@ -17,11 +17,14 @@
                             @foreach (Auth::user()->friends as $friend)
                                 <a href="{{ route('chat.index', $friend->id) }}" class="bold-name-{{ $friend->id }} {{ $friend->pivot->status == 1 ? 'bold-active' : '' }}" data-id-to="{{ $friend->id }}">
                                     <div class="info-user btn-info-user">
-                                        <img src="{{ $friend->company ? $friend->company->image_url : $friend->userInfo->CheckEmptyImage() }}"
+                                        <img src="{{ $friend->userInfo->CheckEmptyImage() }}"
                                             alt="" class="info-image-friend">
                                         <div class="status-active status-active-dot">
-                                            <span
-                                                class="name-friend">{!! $friend->company ? $friend->company->name : $friend->name !!}</span>
+                                            <span class="name-friend">
+                                                {!! $friend->name !!}
+                                                <span class="name-company d-block">{!! $friend->company ? $friend->company->name : '' !!}</span>
+                                            </span>
+                                            
                                             <span class="dot {{ $friend->pivot->status == 1 ? 'dot-active' : '' }}" id="dot-{{ $friend->id }}"></span>
                                         </div>
                                     </div>
@@ -31,7 +34,7 @@
                     </div>
                     <div class="info-me">
                         <div class="status-active status-active-me">
-                            <img src="{{ Auth::user()->company ? Auth::user()->company->image_url : Auth::user()->userInfo->CheckEmptyImage() }}" alt=""
+                            <img src="{{ Auth::user()->userInfo->CheckEmptyImage() }}" alt=""
                                 class="info-image-friend">
                             <span class="font-weight-bold name-me">{!! Auth::user()->name !!}</span>
                         </div>
@@ -47,10 +50,13 @@
                     <div class="col-lg-8 col-12 order-lg-2 order-1 col-info-user">
                         <div class="col-12 wrapper-user">
                             <div class="info-user" id="info-friend" data-id-to="{{ $data['user']->id }}">
-                                <img src="{{ $data['user']->company ? $data['user']->company->image_url : $data['user']->userInfo->CheckEmptyImage() }}" alt=""
+                                <img src="{{ $data['user']->userInfo->CheckEmptyImage() }}" alt=""
                                     class="info-image-friend">
                                 <div class="status-active ">
-                                    <span class="font-weight-bold info-name-friend">{!! $data['user']->company ? $data['user']->company->name : $data['user']->name !!}</span>
+                                    <span class="font-weight-bold info-name-friend">
+                                        {!! $data['user']->name !!}
+                                        <span class="name-company d-block">{!! $data['user']->company ? $data['user']->company->name : '' !!}</span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
