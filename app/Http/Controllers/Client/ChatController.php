@@ -42,4 +42,10 @@ class ChatController extends Controller
 
         return $data ? $this->responseSuccess() : $this->responseError();
     }
+
+    public function search(Request $request) {
+        $users = $this->chat->search($request);
+
+        return $users ? $this->responseSuccess($users) : $this->responseError();
+    }
 }

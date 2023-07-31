@@ -67,8 +67,50 @@ $(document).ready(function () {
         var elem = document.getElementsByClassName('content-message');
         elem[0].scrollTop = elem[0].scrollHeight;
     }
-});
 
+    $('.input-search').on('keyup', function() {
+        // console.log($(this).val());
+        let q = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: "/chat/search?q="+q,
+            dataType: "JSON",
+            success: function (response) {
+                $('.aa').empty();
+                $.each(response.data, function(index, val) {
+                    let company = "";
+                    let avatar = "";
+                    
+                    if(val.company != null) {
+                        company = val.company.name;
+                    }
+
+                    if(val.user_info.avatar != null) {
+                        avatar = avatar = val.user_info.avatar.includes('https://') ? val.user_info.avatar : "/storage/"+val.user_info.avatar;
+                    }else {
+                        avatar = "/workwise/images/resources/user_empty.jpg";
+                    }
+
+                    $('.aa').append(
+                        '<a href="{{ route("chat.index", '+val.id+') }}" class="bold-name-'+val.id+' data-id-to="'+val.id+'">'+
+                            '<div class="info-user btn-info-user">'+
+                                '<img src="'+avatar+'" class="info-image-friend">'+
+                                '<div class="status-active status-active-dot">'+
+                                    '<span class="name-friend">'+
+                                        val.name+
+                                        '<span class="name-company d-block">'+company+'</span>'
+                                    +'</span>'+
+                                    '<span class="dot" id="dot-'+val.id+'"></span>'
+                                +'</div>'
+                            +'</div>'
+                        +'</a>'
+                    )
+                });
+            }
+        });
+    });
+});
+//End ready
 function check_data(e) {
     let wrapperMessage = $('.wrapper-message');
     let data = $(e).val();
