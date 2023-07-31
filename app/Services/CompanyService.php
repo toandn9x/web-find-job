@@ -17,6 +17,12 @@ class CompanyService
         $this->company = new Company();
     }
 
+    public function show($id) {
+        $company = Company::find($id);
+
+        return $company;
+    }
+
     public function update(Request $request) {
         try {
             $data = $request->except('_token');

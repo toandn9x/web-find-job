@@ -54,7 +54,11 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        $company = $this->company->show($id);
+
+        return view('workwise.companies.index', [
+            'company' => $company,
+        ]);
     }
 
     /**

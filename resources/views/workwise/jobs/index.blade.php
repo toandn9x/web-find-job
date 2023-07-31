@@ -40,7 +40,7 @@
                                                                     class="name-work">{{ $job->title_limit }}</a>
                                                             </span>
                                                             <span>
-                                                                <a href="" class="name-company d-block">
+                                                                <a href="{{ route('company.show', $job->company_id) }}" class="name-company d-block">
                                                                     {{ $job->company->name }}
                                                                 </a>
                                                             </span>

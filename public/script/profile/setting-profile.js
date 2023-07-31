@@ -316,6 +316,8 @@ $(document).ready(function () {
         }
     });
 
+
+    //Ham update duong dan lien ket ca nhan
     $('.btn-access-add-link').on('click', function() {
         let input = $("input[name='links[]']");
         let links = [];

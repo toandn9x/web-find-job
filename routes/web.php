@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Route::get('/test', function() {
+//     return view('workwise.companies.index');
+// });
+
 // Admin
 Route::group([
     'namespace' => "Admin",
@@ -46,6 +50,7 @@ Route::group([
 });
 
 //Giao diện chính
+// Không có đăng nhập
 Route::get('/home', function() {
     return view('workwise.home.home');
 });
@@ -55,6 +60,10 @@ Route::get('/job/detail/{id}', "Client\JobController@show")->name('job.detail');
 //Hiển thị các comment của bài tin tuyển dụng
 Route::get('/comment/show/{id}', "Client\CommentController@show");
 
+//Chi tiết công ty tuyển dụng
+Route::get('/company/show/{id}', "Client\CompanyController@show")->name('company.show');
+
+//Bắt buộc đăng nhập tài khoản
 Route::group([
     'middleware' => ['auth','PreventBackHistory'],
 ],function () {
