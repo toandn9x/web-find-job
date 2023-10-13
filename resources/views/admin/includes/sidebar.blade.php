@@ -25,16 +25,23 @@
             <!-- Content -->
             <div class="navbar-vertical-content">
                 <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
-                    <!-- Collapse -->
                     <div class="nav-item">
-                        <a class="nav-link active" href="#navbarVerticalMenuDashboards" role="button"
-                            data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuDashboards"
+                        <a class="nav-link {{ Route::is('admin.home') ? 'active' : '' }}" href="/admin" role="button"
                             aria-expanded="true" aria-controls="navbarVerticalMenuDashboards">
                             <i class="bi-house-door nav-icon"></i>
                             <span class="nav-link-title">Hệ thống</span>
                         </a>
+                        <a class="nav-link {{ Route::is('admin.employer') ? 'active' : '' }}" href="{{ route('admin.employer') }}" role="button"
+                            aria-expanded="true" aria-controls="navbarVerticalMenuDashboards">
+                            <i class="bi bi-building nav-icon"></i>
+                            <span class="nav-link-title">Nhà tuyển dụng</span>
+                        </a>
+                        <a class="nav-link {{ str_contains(url()->current(), 'admin/handbook') ? 'active' : '' }}" href="{{ route('admin.handbook') }}" role="button"
+                            aria-expanded="true" aria-controls="navbarVerticalMenuDashboards">
+                            <i class="bi bi-book nav-icon"></i>
+                            <span class="nav-link-title">Cẩm nang</span>
+                        </a>
                     </div>
-                    <!-- End Collapse -->
                     <!-- End Content -->
 
                     <!-- Footer -->

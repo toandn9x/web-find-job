@@ -20,7 +20,8 @@
 
     <link rel="preload" href="/admins/assets/css/theme.min.css" data-hs-appearance="default" as="style">
     <link rel="preload" href="/admins/assets/css/theme-dark.min.css" data-hs-appearance="dark" as="style">
-
+    <link rel="stylesheet" href="/admins/assets/css/handbook.css">
+    
     <style data-hs-appearance-onload-styles>
         * {
             transition: unset !important;

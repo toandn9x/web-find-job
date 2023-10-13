@@ -20,6 +20,12 @@
                             Tìm việc làm
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('handbook') }}" title>
+                            <span><i class="fa fa-book" aria-hidden="true"></i></span>
+                            Cẩm nang
+                        </a>
+                    </li>
                     @if (Auth::check())
                         <li>
                             <a href="{{ route('home.socail') }}" title>
@@ -45,6 +51,13 @@
                                     top: -10px;
                                     right: -10px;"> {{ Auth::user()->friends()->wherePivot('status', 1)->count() }} </span>
                                 @endif
+                            </a>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ route('form-login') }}" title>
+                                <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                                Đăng nhập
                             </a>
                         </li>
                     @endif
@@ -94,14 +107,7 @@
                         </ul>
                     </div>
                 </div>
-            @else
-            <div class="login_register">
-                <ul>
-                    <li><a href="{{ route('form-login') }}" title="">Đăng nhập</a></li>
-                </ul>
-            </div>
             @endif
-            
         </div>
     </div>
 </header>

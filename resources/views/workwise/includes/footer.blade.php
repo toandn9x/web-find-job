@@ -11,7 +11,9 @@
 <script src="/ckeditor/ckeditor.js"></script>
 <script src="/workwise/js/validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="/untils/helper.js"></script>
+<script src="/swiper/swiper.js"></script>
 <script>
     $(document).ready(function() {
         $('[data-bs-toggle="tooltip"]').tooltip();

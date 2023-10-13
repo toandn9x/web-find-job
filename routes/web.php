@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Route::get('/test', "Client\HandBookController@getHandBookPaginate");
+// Route::get('/test', function() {
+//     return view('workwise.handbook.detail');
+// });
+
 // Admin
 Route::group([
     'namespace' => "Admin",
@@ -11,7 +16,15 @@ Route::group([
         'middleware' => ['auth.admin', 'PreventBackHistory']
     ], function() {
         Route::get('/', 'DashboardController@index')->name('admin.home');
+        Route::get('/employer', 'EmployerController@index')->name('admin.employer');
         Route::get('/auth/logout', "Auth\LoginController@logout")->name('admin.logout');
+        Route::prefix('handbook')->group(function () {
+            Route::get('/', "HandBookController@index")->name('admin.handbook');
+            Route::get('/create', "HandBookController@create")->name('handbook.create');
+            Route::post('/store', "HandBookController@store")->name('handbook.store');
+            Route::get('/edit/{id}', "HandBookController@edit");
+            Route::post('/update/{id}', "HandBookController@update");
+        });
     });
 
     Route::group([
@@ -59,6 +72,10 @@ Route::get('/comment/show/{id}', "Client\CommentController@show");
 //Chi tiết công ty tuyển dụng
 Route::get('/company/show/{id}', "Client\CompanyController@show")->name('company.show');
 
+// Cẩm nang
+Route::get('/handbook', "Client\HandBookController@index")->name('handbook');
+Route::get('/handbook-paginate', "Client\HandBookController@getHandBookPaginate");
+Route::get('/handbook/{slug}', "Client\HandBookController@detail")->name('handbook.detail');
 //Bắt buộc đăng nhập tài khoản
 Route::group([
     'middleware' => ['auth','PreventBackHistory'],

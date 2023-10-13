@@ -3,7 +3,6 @@
 {{-- File Header.blade --}}
 @include('workwise.includes.header')
 @yield('style')
-
 <body>
     <div class="wrapper">
         {{-- File Navbar.blade --}}

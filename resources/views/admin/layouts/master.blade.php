@@ -3506,6 +3506,7 @@
     <!-- JS Front -->
     <script src="/admins/assets/js/theme.min.js"></script>
     <script src="/admins/assets/js/hs.theme-appearance-charts.js"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
 
     <!-- JS Plugins Init. -->
     <script>
@@ -3584,7 +3585,7 @@
             })
         })
     </script>
-
+    @yield('script')
     <!-- JS Plugins Init. -->
     <script>
         (function() {

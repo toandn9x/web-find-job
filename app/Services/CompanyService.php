@@ -17,6 +17,12 @@ class CompanyService
         $this->company = new Company();
     }
 
+    public function index() {
+        $companies = Company::all();
+
+        return $companies;
+    }
+
     public function show($id) {
         $company = Company::find($id);
 
