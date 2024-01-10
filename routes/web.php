@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/test', "Client\HandBookController@getHandBookPaginate");
 // Route::get('/test', function() {
-//     return view('workwise.handbook.detail');
+//     return view('workwise.cv.candidate.find-employer');
 // });
 
 // Admin
@@ -16,7 +16,13 @@ Route::group([
         'middleware' => ['auth.admin', 'PreventBackHistory']
     ], function() {
         Route::get('/', 'DashboardController@index')->name('admin.home');
-        Route::get('/employer', 'EmployerController@index')->name('admin.employer');
+       
+
+        Route::prefix('employer')->group(function () {
+            Route::get('/', 'EmployerController@index')->name('admin.employer');
+            Route::get('/updateStaus/{id}', "EmployerController@updateStatus")->name('admin.employer.updateStatus');
+        });
+
         Route::get('/auth/logout', "Auth\LoginController@logout")->name('admin.logout');
         Route::prefix('handbook')->group(function () {
             Route::get('/', "HandBookController@index")->name('admin.handbook');
@@ -62,7 +68,7 @@ Route::group([
 // Không có đăng nhập
 Route::get('/home', function() {
     return view('workwise.home.home');
-});
+})->name('home.page');
 Route::get('/', "Client\JobController@index")->name('home');
 Route::get('/job/detail/{id}', "Client\JobController@show")->name('job.detail');
 
@@ -108,6 +114,7 @@ Route::group([
             Route::post('/change-password/{id}', "UserController@changePassword")->name('user.setting-profile.change-password');
             Route::post('/update', "UserController@update")->name('user.update');
         });
+        Route::get('/user/update-status-cv', "UserController@updateStatus");
 
         // Công ty tuyển dụng
         Route::prefix('company')->group(function () {
@@ -126,6 +133,7 @@ Route::group([
                 Route::get('/edit/{id}', "JobController@edit")->name('job.edit');
                 Route::post('/update', "JobController@update")->name('job.update');
                 Route::post('/destroy/{id}', "JobController@destroy")->name('job.destroy');
+                Route::get('/update-status/{id}', "JobController@updateStatus")->name('job.update-status');
             });
         });
         // Chức năng like bài tin
@@ -143,8 +151,38 @@ Route::group([
             Route::post('/message', "ChatController@store");
             Route::get('/search', "ChatController@search");
         });
+
+        //CV
+        Route::prefix('cv')->group(function () {
+            Route::get('/', "CvController@index")->name('cv.index');
+            Route::post('/upload', "CvController@store")->name('cv.store');
+            Route::post('/upload-main-cv', "CvController@updateMainCv");
+            Route::post('/apply-job', "CvController@apply");
+            Route::get('/cv-apply', "CvController@uiCvApply")->name('cv.ui-apply');
+            Route::post('/find-job', "CvController@findJob");
+            
+
+            Route::middleware(['checkRole'])->group(function () {
+                Route::get('/manage-cv', "CvController@uiManageCv")->name('cv.manage');
+                
+                //Giao diện xem danh sách hồ sơ các ứng viên đã lưu
+                Route::get('/manage-save-cv', "CvController@uiSaveCv")->name('cv.manage-save-cv');
+
+                //Xem danh sách ứng viên ứng tuyển
+                Route::post('/view-candidate', "CvController@viewCandidate");
+
+                //Tìm kiếm ứng viên
+                Route::get('/find-candidate', "CvController@findCandidate")->name('cv.find-candidate');
+
+                //Lưu cv ứng viên
+                Route::get('/save-cv/{id}', "CvController@saveCv")->name('cv.save');
+
+                Route::post('/update-cv-candidate', "CvController@updateCvCandidate");
+            });
+        });
+            
     });
 
     //Đăng xuất tài khoản
-    Route::get('/logout','LoginController@logout');
+    // Route::get('/logout','LoginController@logout');
 });

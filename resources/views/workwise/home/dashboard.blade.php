@@ -181,7 +181,7 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                                <div class="job-status-bar">
+                                                <div class="job-status-bar" style="padding: 0 20px">
                                                     <ul class="like-com">
                                                         <li><a href="#"
                                                                 class="com like_post {{ $post->checkUserLike() ? 'active_like' : '' }}"

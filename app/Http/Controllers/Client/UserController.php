@@ -80,4 +80,10 @@ class UserController extends Controller
 
         return $user ? $this->responseSuccess() : $this->responseError();
     }
+
+    public function updateStatus(Request $request) {
+        User::where('id', Auth::user()->id)->update(['status_cv' => 0]);
+
+        return $this->responseSuccess();
+    }
 }

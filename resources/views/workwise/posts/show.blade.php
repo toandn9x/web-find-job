@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="job-status-bar mb-4">
+                <div class="job-status-bar mb-4" style="padding: 0 20px">
                     <ul class="like-com">
                         <li><a href="#" class="com" id="com_modal">
                                 <i class="fas fa-heart"></i>

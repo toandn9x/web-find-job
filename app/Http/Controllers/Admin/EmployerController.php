@@ -20,4 +20,10 @@ class EmployerController extends Controller
             'companies' => $companies,
         ]);
     }
+
+    public function updateStatus($id) {
+        $this->company->updateStatus($id);
+
+        return back();
+    }
 }

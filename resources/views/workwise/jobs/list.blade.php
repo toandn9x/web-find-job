@@ -39,17 +39,34 @@
                                                                 {{ $job->title }}
                                                             </a>
                                                             <br>
-                                                            Cập nhật lúc: {{ date('H:m'), strtotime($job->updated_at) }} ngày {{ date('d/m/Y'), strtotime($job->updated_at) }}
+                                                            Cập nhật lúc: {{ date('H:m'), strtotime($job->updated_at) }}
+                                                            ngày {{ date('d/m/Y'), strtotime($job->updated_at) }}
                                                         </td>
-                                                        <td class="text-center">{{ number_format($job->views,0, '', '.') }}</td>
-                                                        <td class="text-center">Tin đã được đăng</td>
+                                                        <td class="text-center">{{ number_format($job->views, 0, '', '.') }}
+                                                        </td>
                                                         <td class="text-center">
-                                                            <a href="{{ route('job.edit', $job->id) }}" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Chỉnh sửa tin">
+                                                            <a href="{{ route('job.update-status', $job->id) }}">
+                                                                @if ($job->status == 1)
+                                                                    <i class="fa fa-unlock" aria-hidden="true"></i>
+                                                                @else
+                                                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                                                @endif
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a href="{{ route('job.edit', $job->id) }}"
+                                                                class="btn btn-primary btn-sm" data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Chỉnh sửa tin">
                                                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                             </a>
-                                                            <form action="{{ route('job.destroy', $job->id) }}" class="d-inline-block" method="POST">
+                                                            <form action="{{ route('job.destroy', $job->id) }}"
+                                                                class="d-inline-block" method="POST">
                                                                 @csrf
-                                                                <button type="button" class="btn btn-danger btn-sm btn_delete_job" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa tin"> <i class="fa fa-trash" aria-hidden="true"></i> </button>
+                                                                <button type="button"
+                                                                    class="btn btn-danger btn-sm btn_delete_job"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="Xóa tin"> <i class="fa fa-trash"
+                                                                        aria-hidden="true"></i> </button>
                                                             </form>
                                                         </td>
                                                     </tr>

@@ -37,12 +37,14 @@ $(document).ready(function () {
     function callEventChat() {
         // console.log(pusher_key);
         // console.log(pusher_cluster);
+        let me_id = $('#sign-out').data('id-me');
+
         var pusher = new Pusher(pusher_key, {
             encrypted: true,
             cluster: pusher_cluster,
         });
 
-        var channel = pusher.subscribe('channel-chat');
+        var channel = pusher.subscribe('channel-chat-'+me_id);
         channel.bind('chat', addMessage);
     }
 
@@ -65,7 +67,9 @@ $(document).ready(function () {
 
     function scollTopMessage() {
         var elem = document.getElementsByClassName('content-message');
-        elem[0].scrollTop = elem[0].scrollHeight;
+        if(elem[0]) {
+            elem[0].scrollTop = elem[0].scrollHeight;
+        }
     }
 
     $('.input-search').on('keyup', function() {
@@ -92,7 +96,7 @@ $(document).ready(function () {
                     }
 
                     $('.aa').append(
-                        '<a href="{{ route("chat.index", '+val.id+') }}" class="bold-name-'+val.id+' data-id-to="'+val.id+'">'+
+                        '<a href="/chat/user/'+val.id+'" class="bold-name-'+val.id+' data-id-to="'+val.id+'">'+
                             '<div class="info-user btn-info-user">'+
                                 '<img src="'+avatar+'" class="info-image-friend">'+
                                 '<div class="status-active status-active-dot">'+

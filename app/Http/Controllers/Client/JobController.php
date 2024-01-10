@@ -58,7 +58,7 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        $this->job->store($request);
+        $dd = $this->job->store($request);
 
         return redirect()->route('job.list')->with('success', 'Tạo mới tin thành công.');
     }
@@ -125,5 +125,12 @@ class JobController extends Controller
             'count' => count($job->likes),
         ];
         return $job ? $this->responseSuccess($data) : $this->responseError();
+    }
+
+    public function updateStatus($id)
+    {   
+        $this->job->updateStatus($id);
+
+        return back()->with('success', 'Cập nhật thành công.');
     }
 }

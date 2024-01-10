@@ -9,6 +9,8 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Auth;
+use Log;
 
 class Chat implements ShouldBroadcast
 {
@@ -34,7 +36,8 @@ class Chat implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('channel-chat');
+        $recipientId = $this->data['user_to_id'];
+        return new Channel('channel-chat-'.$recipientId);
     }
 
     public function broadcastAs() {

@@ -38,6 +38,7 @@ class User extends Authenticatable
     protected $hidden = [
         'facebook_id',
         'google_id',
+        'type_login',
         'password',
         'remember_token',
         'token',
@@ -81,5 +82,17 @@ class User extends Authenticatable
 
     public function friends() {
         return $this->belongsToMany(User::class, 'friends', 'user_from_id', 'user_to_id')->withPivot('status');
+    }
+
+    public function jobs() {
+        return $this->belongsToMany(Job::class, 'job_user')->withPivot('created_at', 'status', 'time_interview');
+    }
+
+    public function cvs() {
+        return $this->hasMany(MyCv::class);
+    }
+
+    public function findJob() {
+        return $this->hasOne(FindJob::class);
     }
 }

@@ -39,7 +39,26 @@
                                                         @endif
                                                     </span>
                                                 </p>
-                                                <p class="view">Lượt xem: <span class="tag_red">{{ number_format($job->views, 0, '', '.') }}</span>  &nbsp; |  &nbsp; Ngày đăng: <span class="tag_red">{{ date('d-m-Y' ,strtotime($job->created_at)) }}</span></p>
+                                                <div class="view d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        Lượt xem: <span class="tag_red">{{ number_format($job->views, 0, '', '.') }}</span>  &nbsp; |  &nbsp; 
+                                                        Ngày đăng: <span class="tag_red">{{ date('d-m-Y' ,strtotime($job->created_at)) }}</span> &nbsp; |  &nbsp; 
+                                                        Hạn ứng tuyển: <span class="tag_red">{{ date('d-m-Y' ,strtotime($job->expired_time)) }}</span>
+                                                    </div>
+                                                    @if (Auth::check() && Auth::user()->role == App\Models\User::ROLE['CANDIDATE'])
+                                                        @if ($job->status == 1)
+                                                            @if($job->expired_time > Carbon\Carbon::now())
+                                                                <div>
+                                                                    <button class="btn btn-primary button-apply" data-name="{{ $job->title }}" data-id="{{ $job->id }}">Ứng tuyển</button>
+                                                                </div>
+                                                            @else
+                                                                <div>
+                                                                    <button class="btn btn-primary" disabled>Hết hạn</button>
+                                                                </div>
+                                                            @endif
+                                                        @endif
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -130,4 +149,8 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('script')
+    <script src="/script/cv/index.js"></script>
 @endsection

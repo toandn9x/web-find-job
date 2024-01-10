@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    // handleSetMinDate();
     CKEDITOR.replace( 'lg_descirption' );
     CKEDITOR.replace( 'lg_request_other' );
     CKEDITOR.replace( 'lg_benefits_enjoyed' );
@@ -120,7 +120,7 @@ $(document).ready(function () {
             },
             "new_money_max": {
                 required: "Vui lòng nhập mức lương phù hợp.",
-            }
+            },
         },
 
         errorPlacement: function(error, element) {
@@ -138,6 +138,7 @@ $(document).ready(function () {
         let lg_descirption = CKEDITOR.instances.lg_descirption.getData().length;
         let lg_benefits_enjoyed = CKEDITOR.instances.lg_benefits_enjoyed.getData().length;
         if(!validator.valid()) {
+            console.log(validator.form());
             return false;
         }
         if(!handleValidateMoney()) {

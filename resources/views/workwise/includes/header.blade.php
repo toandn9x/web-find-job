@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="/sweetalert2/sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
     <style>
         body {
             font-family: "Inter";
@@ -39,7 +40,47 @@
         ::-webkit-scrollbar-thumb {
             background-color:#e44d3a;
             border: 4px solid transparent;
-            /* border-radius: 8px; */
+        }
+
+        #wrapper-notification {
+            width: 300px;
+            height: 150px;
+            max-width: 300px;
+            max-height: 300px;
+            background-color: white;
+            border-radius: 10px;
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            padding: 0 10px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 999;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        #avatar-notification {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #content-notification {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        #name-sender-notification {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .time-sender-notification {
+            font-size: 12px;
+            color: gray;
         }
     </style>
     @yield('style')

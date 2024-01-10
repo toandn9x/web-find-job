@@ -215,6 +215,11 @@
                                                     </div>
                                                 </div>
 
+                                                <p class="title_dm">Thời hạn ứng tuyển</p>
+
+                                                <div class="form-group col-md-12 mb-4">
+                                                    <input type="date" class="form-control deadlinequne" id="deadline-deadlinequne" name="expired_time" data-ignored value="{{ date('Y-m-d', strtotime($job->expired_time)) }}"/>
+                                                </div>
                                                 <button type="submit" class="btn btn-primary">Chỉnh sửa</button>
                                             </form>
                                         </div>

@@ -21,3 +21,58 @@
     border: 1px solid #dee2e6 !important;
     vertical-align: middle;
 }
+
+.middle-modal {
+    height: 500px;
+    overflow-y: auto;
+}
+
+.header_title-modal {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.header_name-work {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.menu-status {
+    display: none;
+    width: 250px;
+    max-width: 250px;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    top: 0;
+    right: 80%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    z-index: 9;
+}
+
+.hover-menu:hover .menu-status {
+    display: flex;
+}
+
+.status-item {
+    padding: 8px 0;
+}
+
+.status-item:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.status-item-disable {
+    color: #6c757d !important;
+}
+
+.status-item-choose {
+    background-color: #f1f1f1;
+    color: black !important
+}
+
+.time-await-interview {
+    font-size: 13px;
+}

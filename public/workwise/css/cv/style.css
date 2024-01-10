@@ -1,0 +1,129 @@
+.acc-setting {
+    border-radius: 10px;
+    box-shadow: 4px 1px 20px rgba(67, 56, 56, 0.1)
+}
+
+.acc-setting-wrapper {
+
+}
+
+.acc-setting-wrapper>h3 {
+    color: #000;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+.wrapper-cv {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper-cv::before {
+    content: '';
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.wrapper-cv__action {
+    content: '';
+    width: 100%;
+    height: 30%;
+    background-image: linear-gradient(180deg,hsla(0,0%,100%,0),black);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 2;
+    overflow: hidden;
+    transition: 0.2s;
+    padding: 15px 10px;
+}
+
+.name-cv {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.created-cv {
+    font-size: 13px;
+}
+
+.btn-delete-cv {
+    color: white;
+    font-weight: bold;
+    background-color: transparent !important;
+    border: none;
+    outline: none;
+    font-size: 25px;
+}
+
+.main-cv {
+    background: hsla(0,0%,100%,.2);
+    border-radius: 30px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    margin-right: 8px;
+    padding: 4px 8px;
+    width: max-content;
+}
+
+.sub-cv:hover {
+    background: hsla(0,0%,100%,.3);
+}
+
+.main-cv-icon {
+    color: yellow;
+}
+
+.modal {
+    height: 80% !important;
+    border-radius: 8px;
+}
+
+.modal-dialog {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2) ,0 2px 4px 0 rgba(0, 0, 0, 0.1),inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    align-items: unset;
+}
+
+.header .header_title {
+    height: 100%;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.middle {
+    padding: 15px 25px;
+}
+
+.wrapper-btn {
+    display: flex;
+    margin-top: 5%;
+    justify-content: center;
+}
+
+.wrapper-note {
+    border: 1px dotted red;
+    color: red;
+}
+
+.text-note {
+    font-style: italic;
+}
+
+.select2 {
+    width: 100% !important;
+}

@@ -191,12 +191,6 @@ $(document).ready(function () {
     $('.send_comment').on('keypress', function(event) {
         let content = $(this).val();
 
-        // if(content.length > 150) {
-        //     $(this).css('height','100px');
-        // }else{
-        //     $(this).css('height','40px');
-        // }
-
         //Bình luận bài tin
         if(event.keyCode === 13 && !event.shiftKey) {
             event.preventDefault();
@@ -248,11 +242,6 @@ $(document).ready(function () {
         let content = $(this).val()
         let parent_id = $(this).data('id');
         let area = $(this);
-        // if(content.length > 150) {
-        //     $(this).css('height','100px');
-        // }else{
-        //     $(this).css('height','40px');
-        // }
 
         // '\u00A0': Ký tự space = &nbsp;
         if(event.keyCode === 13 && !event.shiftKey) {
@@ -369,6 +358,13 @@ $(document).ready(function () {
         $('#idJob').val('');
     });
 
+    $.getJSON("/script/json/jobs.json", function (data) {
+        $.each(data.jobs, function(key, value){
+            $('.select_choose_work').append(
+                `<option value="${value}">${value}</option>`
+            )
+        });          
+    });
     //------- Function -------------
     function handleFormatDate(timeData) {
         let time = new Date(timeData);

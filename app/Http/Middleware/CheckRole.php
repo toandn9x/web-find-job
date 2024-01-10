@@ -18,7 +18,7 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role != User::ROLE['EMPLOYER']) {
+        if(Auth::user()->role != User::ROLE['EMPLOYER'] || (Auth::user()->role == User::ROLE['EMPLOYER'] && Auth::user()->company->status == 0)) {
             abort(403);
         }
         return $next($request);

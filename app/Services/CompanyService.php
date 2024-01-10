@@ -81,6 +81,17 @@ class CompanyService
        
     }
 
+    public function updateStatus($id) {
+        $company = Company::find($id);
+
+        if($company->status == 1) {
+            $company->status = 0;
+        }else {
+            $company->status = 1;
+        }
+        $company->save();
+    }
+
     private function handleUploadCompanyImages($data, $id) {
         try {
             $random = Str::random(40);

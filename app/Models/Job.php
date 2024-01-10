@@ -157,8 +157,8 @@ class Job extends Model
         return self::$money_text[$this->money_kg];
     }
 
-    public function getTitleLimitAttribute() {
-        return Str::limit($this->title, 100);
+    public function TitleLimit($text) {
+        return Str::limit($text, 25);
     }
 
     //Hàm kiểm tra xem người dùng đã like tin chưa
@@ -176,6 +176,14 @@ class Job extends Model
         if($request->has('keyword')) {
             $query->where('title', 'LIKE','%'. $request->get('keyword') .'%')
                     ->orWhere('category', 'LIKE','%'. $request->get('keyword') .'%');
+        }
+        return $query;
+    }
+
+    public function scopeWork($query, $request) {
+        if($request->has('work')) {
+            $query->where('category', 'LIKE','%'. $request->get('work') .'%')
+                    ->orWhere('title', 'LIKE','%'. $request->get('work') .'%');
         }
         return $query;
     }
@@ -220,5 +228,9 @@ class Job extends Model
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+
+    public function users() {
+        return $this->belongsToMany(User::class)->withPivot('created_at', 'status', 'time_interview');
     }
 }

@@ -45,7 +45,7 @@
                                                     <div class="form-group col-md-6 mb-4">
                                                         <label for="lg_qty" class="mb-3">Số lượng cần tuyển <span
                                                                 class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control enter_ipt" id="lg_qty"
+                                                        <input type="text" class="form-control enter_ipt my-group" id="lg_qty"
                                                             placeholder="Số lượng tuyển" name="lg_qty" data-error="#error_lg_qty">
                                                         <span class="form_error" id="error_lg_qty">&nbsp;</span>
                                                     </div>
@@ -208,6 +208,11 @@
                                                     </div>
                                                 </div>
 
+                                                <p class="title_dm">Thời hạn ứng tuyển</p>
+
+                                                <div class="form-group col-md-12 mb-4">
+                                                    <input type="date" class="form-control deadlinequne" id="deadline-deadlinequne" name="expired_time" data-ignored />
+                                                </div>
                                                 <button type="submit" class="btn btn-primary">Đăng tin</button>
                                             </form>
                                         </div>

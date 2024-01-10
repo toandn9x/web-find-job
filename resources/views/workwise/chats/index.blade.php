@@ -39,7 +39,7 @@
                             <span class="font-weight-bold name-me">{!! Auth::user()->name !!}</span>
                         </div>
                         <div class="log-out">
-                            <a href="{{ url('/logout') }}">
+                            <a href="{{ route("logout") }}">
                                 <i class="fa fa-sign-out" id="sign-out" aria-hidden="true"
                                     data-id-me="{{ Auth::user()->id }}"></i>
                             </a>

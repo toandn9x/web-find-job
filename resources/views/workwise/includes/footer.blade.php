@@ -14,6 +14,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="/untils/helper.js"></script>
 <script src="/swiper/swiper.js"></script>
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 <script>
     $(document).ready(function() {
         $('[data-bs-toggle="tooltip"]').tooltip();

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Job;
 use Auth;
 use Log;
+use Arr;
 use Carbon\Carbon;
 
 class JobService
@@ -17,7 +18,14 @@ class JobService
     }
 
     public function index(Request $request) {
-        $jobs = Job::query()->title($request)
+
+        $arr = [];
+        $arrSuggest = [];
+        $newArray = [];
+
+        $jobs = Job::query()
+                    ->title($request)
+                    ->work($request)
                     ->city($request)
                     ->rank($request)
                     ->methodwork($request)
@@ -26,12 +34,69 @@ class JobService
                         $query->select('id','name','phone','address','path');
                     }])
                     ->orderBy('created_at', 'DESC')->get();
-
-        return $jobs;
+        
+        
+        foreach ($jobs as $index => $job) {
+            array_push($arr, $job);
+        }
+        $arr_jobs = array_chunk( $arr, 6);
+        //Công việc gợi ý
+        if (Auth::check() && Auth::user()->findJob) {
+            $userFindJob = Auth::user()->findJob;
+            foreach ($userFindJob->json_job as $job) {
+                foreach($userFindJob->json_address as $address) {
+                    $suggestJobs = Job::where('title', 'LIKE','%'. $job .'%')
+                                        ->orderBy('created_at', "DESC")
+                                        ->orWhere('category', 'LIKE','%'. $job .'%')
+                                        ->orWhere(function($query) use($job, $address) {
+                                            $query->where([
+                                                ['category', 'LIKE','%'. $job .'%'],
+                                                ['city', 'LIKE','%'. $address .'%']
+                                            ]);
+                                        })
+                                        ->orWhere(function($query) use($job, $address) {
+                                            $query->where([
+                                                ['title', 'LIKE','%'. $job .'%'],
+                                                ['city', 'LIKE','%'. $address .'%']
+                                            ]);
+                                        })
+                                        ->orWhere(function($query) use($job, $address) {
+                                            $query->where([
+                                                ['category', 'LIKE','%'. $job .'%'],
+                                                ['address', 'LIKE','%'. $address .'%']
+                                            ]);
+                                        })
+                                        ->orWhere(function($query) use($job, $address) {
+                                            $query->where([
+                                                ['category', 'LIKE','%'. $job .'%'],
+                                                ['address', 'LIKE','%'. $address .'%']
+                                            ]);
+                                        })
+                                        ->with(['company' => function($query){
+                                                $query->select('id','name','phone','address','path');
+                                        }])
+                                        ->get();
+                }
+                    array_push($newArray, $suggestJobs);
+            }
+          
+            foreach($newArray as $arr)  {
+                foreach($arr as $job) {
+                    array_push($arrSuggest, $job);
+                }
+            }
+            // $newArray = collect($pushArr)->toArray();
+            // $arrSuggest = array_merge(...$newArray);
+            // dd($new);
+        }
+        $arr_suggest_job = array_chunk($arrSuggest, 4);
+        // dd($arr_suggest_job);
+        return [$arr_jobs, $arr_suggest_job];
     }
 
     public function store(Request $request) {
         try {
+
             $data = $request->except('_token');
             $job = $this->job;
             $job->user_id = Auth::user()->id;
@@ -55,6 +120,7 @@ class JobService
             $job->request_other = $data['lg_request_other'];
             $job->benefits_enjoyed = $data['lg_benefits_enjoyed'];
             $job->job_application = $data['lg_job_application'];
+            $job->expired_time = $data['expired_time'];
             $job->created_at = Carbon::now();
             $job->save();
 
@@ -78,7 +144,7 @@ class JobService
     }
 
     public function list() {
-        $jobs = Job::select('id', 'title', 'category', 'qty','money_type','money_min','money_max' ,'views', 'updated_at')
+        $jobs = Job::select('id', 'title', 'category', 'qty','money_type','money_min','money_max' ,'views', 'updated_at', 'status')
                     ->where('user_id', Auth::user()->id)
                     ->get();
         return $jobs;
@@ -156,6 +222,29 @@ class JobService
                 "line" => __LINE__,                    
                 "message" => $e->getMessage(),
                 "data" => $request->all(),    
+            ]);
+            return false;
+        }
+    }
+
+    public function updateStatus($id) {
+        try {
+            $job = Job::find($id);
+            
+            if($job->status == 1) {
+                $job->status = 0;
+            }else {
+                $job->status = 1;
+            }
+
+            $job->save();
+            
+            return true;
+        } catch (\Exception $e) {
+            Log::error('Error like job', [
+                "method" => __METHOD__,                
+                "line" => __LINE__,                    
+                "message" => $e->getMessage(),
             ]);
             return false;
         }
