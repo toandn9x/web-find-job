@@ -5,8 +5,6 @@
 Version PHP >= 8.
 
 1. Clone project
-``` bash
-git clone https://gitlab.com/nghiadhdk123/project-find-job.git
 
 cp .env.example .env
 ```
